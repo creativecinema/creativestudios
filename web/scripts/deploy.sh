@@ -21,6 +21,6 @@ lftp -c "
   set sftp:auto-confirm yes;
   set net:max-retries 2; set net:timeout 20;
   open -u '${ONECOM_SFTP_USER}','${ONECOM_SFTP_PASSWORD}' sftp://${ONECOM_SFTP_HOST};
-  mirror -R --delete --parallel=4 --verbose ./dist '${ONECOM_REMOTE_PATH}';
+  mirror -R --parallel=4 --verbose ./dist '${ONECOM_REMOTE_PATH}';
 "
 echo "✓ Deploy fertig: https://creative-studios.tv/"

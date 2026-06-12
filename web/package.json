@@ -1,0 +1,20 @@
+{
+  "name": "creativecinema-web",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "CreativeCinema GmbH – Astro-Frontend (DE/EN), Design-Quelle: ../site",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "seed": "node scripts/seed-storyblok.mjs",
+    "deploy": "bash scripts/deploy.sh"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@storyblok/astro": "^9.0.12",
+    "astro": "^5.5.0"
+  }
+}

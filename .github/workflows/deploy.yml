@@ -1,0 +1,53 @@
+name: Build & Deploy → one.com
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**', '.github/workflows/deploy.yml']
+  repository_dispatch:
+    types: [storyblok-publish]   # von einem Storyblok-Webhook ausgelöst (siehe DEPLOY.md)
+  workflow_dispatch: {}           # manueller Start per Knopfdruck in GitHub
+
+concurrency:
+  group: deploy-onecom
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Dependencies
+        run: npm ci
+
+      - name: Build (Astro, statisch, Inhalte aus Storyblok = publiziert)
+        run: npm run build
+        env:
+          STORYBLOK_TOKEN: ${{ secrets.STORYBLOK_TOKEN }}   # Space-Preview-Token (lesend)
+          STORYBLOK_REGION: eu
+
+      - name: Upload nach one.com (SFTP via lftp)
+        env:
+          HOST: ${{ secrets.ONECOM_SFTP_HOST }}     # z. B. ssh.creative-cinema.de
+          USER: ${{ secrets.ONECOM_SFTP_USER }}
+          PASS: ${{ secrets.ONECOM_SFTP_PASSWORD }}
+          # Webroot auf one.com – ERST auf einem Test-Unterordner prüfen, dann auf den echten Webroot zeigen!
+          REMOTE: ${{ secrets.ONECOM_REMOTE_PATH }}  # z. B. /  oder  /public_html  oder  /www
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2; set net:timeout 20;
+            open -u '$USER','$PASS' sftp://$HOST;
+            mirror -R --delete --parallel=4 --verbose ./dist '$REMOTE';
+          "

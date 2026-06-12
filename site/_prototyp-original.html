@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Filmproduktion & XR-Studio Erlangen/Nürnberg | CreativeCinema</title>
+<meta name="description" content="Filmproduktion mit eigener 50-m²-LED-Wand: Virtual Production, Studiovermietung & Content-Abos für den Mittelstand. Erlangen, 20 Min. von Nürnberg.">
+<link rel="canonical" href="https://creative-cinema.de/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://creative-cinema.de/">
+<meta property="og:title" content="Filmproduktion & XR-Studio Erlangen/Nürnberg | CreativeCinema">
+<meta property="og:description" content="50 m² LED-Wand mit Kameratracking: Virtual Production & Studiovermietung – 5 Locations an einem Drehtag.">
+<meta property="og:locale" content="de_DE">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "CreativeCinema GmbH",
+  "description": "Filmproduktion und XR-Studio mit 50 m² LED-Wand und Kameratracking. Studiovermietung und Virtual Production in Erlangen bei Nürnberg.",
+  "slogan": "Direkt. Innovativ. Produktionssicher.",
+  "address": { "@type": "PostalAddress", "streetAddress": "Gundstraße 13a", "postalCode": "91056", "addressLocality": "Erlangen", "addressCountry": "DE" },
+  "areaServed": ["Erlangen", "Nürnberg", "Fürth", "Bayern"],
+  "url": "https://creative-cinema.de",
+  "email": "as@creative-cinema.net",
+  "makesOffer": [
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "LED-Studio Vermietung" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Virtual Production / XR-Filmproduktion" } }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CI-TOKENS CreativeCinema GmbH
+   Verankert in der bestehenden Markenwelt:
+   - Wortmarke: CreativeCinema (ein Wort, Binnenmajuskel)
+   - Claim:     DIREKT. INNOVATIV. PRODUKTIONSSICHER.
+   - Tagline:   "Zuhause im Kosmos der Medienwelt"
+   - Bildwelt:  dunkler Kino-/Studio-Look
+   Farben & Fonts am 11.06.2026 direkt von creative-cinema.de
+   ausgelesen: Logo-SVG CC_Logo_White-1.svg (Rot #C23336),
+   Poppins 600 (Headlines), Source Sans Pro/3 (Fliesstext),
+   Flaechen #1a1a1a / #f5f5f5, Text #4a4a4a, Buttons 24px Radius.
+   ============================================================ */
+:root{
+  --stage:#101114;        /* Studio-Schwarz, nicht reines Schwarz */
+  --panel:#17191E;
+  --panel-2:#1D2026;
+  --line:#2A2D34;
+  --bone:#F2EFE8;         /* warmes Weiß */
+  --muted:#9CA0A8;
+  --ci-akzent:#C23336;    /* CI-Rot, exakt aus dem Logo-SVG */
+  --tungsten:var(--ci-akzent);
+  --led:#D9494C;          /* aufgehelltes CI-Rot fuer kleine Texte auf Dunkel (Kontrast) */
+  --radius:14px;
+  --max:1180px;
+}
+.skip-link{position:absolute;left:-9999px;top:0;background:var(--tungsten);color:#FFFFFF;padding:12px 20px;z-index:100;font-weight:600;border-radius:0 0 8px 0}
+.skip-link:focus{left:0}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--stage);color:var(--bone);font-family:'Source Sans 3',sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:'Poppins',sans-serif;line-height:1.08;letter-spacing:-.01em}
+.mono{font-family:'Source Sans 3',sans-serif;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+a{color:inherit;text-decoration:none}
+section{padding:96px 0}
+.eyebrow{font-family:'Source Sans 3',sans-serif;font-weight:600;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--led);display:block;margin-bottom:18px}
+.section-h{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;margin-bottom:18px;max-width:21ch}
+.lede{color:var(--muted);max-width:62ch;margin-bottom:40px}
+
+/* ---------- NAV ---------- */
+nav{position:sticky;top:0;z-index:50;background:rgba(16,17,20,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.02em}
+.logo em{font-style:normal;color:var(--tungsten)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:.92rem;color:var(--muted);transition:color .2s}
+.nav-links a:hover,.nav-links a:focus-visible{color:var(--bone)}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;font-weight:600;font-size:.95rem;transition:transform .15s,box-shadow .2s;border:1px solid transparent}
+.btn:focus-visible{outline:2px solid var(--led);outline-offset:3px}
+.btn-amber{background:var(--tungsten);color:#FFFFFF}
+.btn-amber:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(194,51,54,.40)}
+.btn-ghost{border-color:var(--line);color:var(--bone)}
+.btn-ghost:hover{border-color:var(--muted)}
+.nav-cta{padding:10px 20px}
+@media(max-width:880px){.nav-links a:not(.btn){display:none}}
+
+/* ---------- HERO: Die LED-Wand als Bühne ---------- */
+.hero{padding:72px 0 90px}
+.slate{display:flex;gap:18px;align-items:center;margin-bottom:26px}
+.rec{display:flex;align-items:center;gap:8px;font-family:'Source Sans 3',sans-serif;font-size:.78rem;color:var(--muted);letter-spacing:.1em}
+.rec-dot{width:9px;height:9px;border-radius:50%;background:#E04F4F;animation:blink 1.6s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
+.tc{font-family:'Source Sans 3',sans-serif;font-size:.78rem;color:var(--muted);letter-spacing:.1em}
+.wall{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#000;
+  box-shadow:0 0 0 6px #0B0C0E, 0 30px 80px rgba(0,0,0,.6)}
+.wall::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 1px,transparent 1px 4px);mix-blend-mode:overlay}
+.backdrop{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.backdrop.active{opacity:1}
+.bd-desert{background:
+  radial-gradient(120% 80% at 50% 0%, #FFD9A0 0%, #E8A33D 35%, #8A4B26 70%, #3A1F14 100%)}
+.bd-skyline{background:
+  repeating-linear-gradient(90deg, rgba(89,214,230,.16) 0 2px, transparent 2px 26px),
+  repeating-linear-gradient(0deg, rgba(89,214,230,.10) 0 2px, transparent 2px 18px),
+  linear-gradient(180deg,#1B2340 0%,#27224C 45%,#0E1226 100%)}
+.bd-halle{background:
+  repeating-linear-gradient(115deg, rgba(242,239,232,.07) 0 3px, transparent 3px 60px),
+  linear-gradient(180deg,#2A3038 0%,#1A1E24 60%,#101317 100%)}
+.bd-alpen{background:
+  linear-gradient(165deg,#E9F2F6 0%,#9FBFD0 18%,#5C7E96 38%,#2C4458 60%,#16222E 100%)}
+.wall-in{position:relative;z-index:2;padding:clamp(40px,7vw,84px) clamp(24px,6vw,72px);
+  background:linear-gradient(180deg,rgba(10,11,13,.10) 0%,rgba(10,11,13,.55) 70%,rgba(10,11,13,.85) 100%)}
+.hero h1{font-size:clamp(2.3rem,6vw,4.3rem);font-weight:800;max-width:17ch;text-shadow:0 2px 30px rgba(0,0,0,.5)}
+.hero .sub{margin:22px 0 34px;max-width:56ch;color:#E4E1D9;font-size:1.06rem;text-shadow:0 1px 18px rgba(0,0,0,.6)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.loc-chips{position:relative;z-index:2;display:flex;gap:10px;flex-wrap:wrap;padding:18px clamp(24px,6vw,72px) 26px;
+  background:rgba(10,11,13,.85);border-top:1px solid var(--line)}
+.loc-chips .mono{width:100%;margin-bottom:2px}
+.chip{font-family:'Source Sans 3',sans-serif;font-size:.78rem;letter-spacing:.06em;padding:0 18px;min-height:44px;display:inline-flex;align-items:center;border-radius:999px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s}
+.chip:hover{border-color:var(--muted);color:var(--bone)}
+.chip.active{border-color:var(--led);color:var(--led);box-shadow:0 0 18px rgba(89,214,230,.25) inset}
+.chip:focus-visible{outline:2px solid var(--led);outline-offset:2px}
+
+/* ---------- PROOF / DREHBERICHT ---------- */
+.proof{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:0;background:var(--panel)}
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr)}
+.proof-item{padding:36px 28px;border-left:1px solid var(--line)}
+.proof-item:first-child{border-left:none}
+.proof-num{font-family:'Poppins',sans-serif;font-weight:800;font-size:2.6rem;color:var(--tungsten)}
+.proof-item p{color:var(--muted);font-size:.95rem;margin-top:4px}
+@media(max-width:760px){.proof-grid{grid-template-columns:1fr}.proof-item{border-left:none;border-top:1px solid var(--line)}}
+
+/* ---------- ZWEI WEGE ---------- */
+.paths{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.path{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:42px 36px;transition:border-color .25s,transform .25s;display:flex;flex-direction:column;gap:14px}
+.path:hover{border-color:var(--tungsten);transform:translateY(-3px)}
+.path h3{font-size:1.55rem;font-weight:800}
+.path p{color:var(--muted);font-size:.98rem;flex:1}
+.path .mono{color:var(--tungsten)}
+.path-link{font-weight:600;color:var(--led)}
+.path-link::after{content:" →"}
+@media(max-width:760px){.paths{grid-template-columns:1fr}}
+
+/* ---------- STUDIO MIETEN ---------- */
+.studio{background:var(--panel)}
+.studio-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.spec-table{width:100%;border-collapse:collapse;font-family:'Source Sans 3',sans-serif;font-size:.85rem}
+.spec-table td{padding:13px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.spec-table td:first-child{color:var(--muted);width:42%;text-transform:uppercase;letter-spacing:.06em;font-size:.74rem;padding-top:16px}
+.price-cards{display:grid;gap:14px}
+.price{background:var(--panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap}
+.price.featured{border-color:var(--tungsten)}
+.price h4{font-family:'Poppins',sans-serif;font-size:1.12rem;font-weight:600}
+.price small{display:block;color:var(--muted);font-family:'Instrument Sans';font-size:.88rem;margin-top:4px;max-width:34ch}
+.price .tag{font-family:'Source Sans 3',sans-serif;font-weight:600;color:var(--led);font-size:1rem;white-space:nowrap}
+@media(max-width:900px){.studio-grid{grid-template-columns:1fr}}
+
+/* ---------- VIRTUAL PRODUCTION ---------- */
+.usecases{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px}
+.uc{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.uc h4{font-family:'Poppins',sans-serif;font-weight:600;font-size:1.05rem;margin-bottom:8px}
+.uc p{color:var(--muted);font-size:.92rem}
+.uc .mono{display:block;margin-bottom:12px;color:var(--led);font-weight:600}
+@media(max-width:900px){.usecases{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.usecases{grid-template-columns:1fr}}
+.firmenset{margin-top:56px;background:linear-gradient(135deg,var(--panel-2) 0%,var(--panel) 100%);border:1px solid var(--line);border-left:4px solid var(--ci-akzent);border-radius:var(--radius);padding:40px 38px}
+.firmenset h3{font-size:1.5rem;font-weight:800;margin-bottom:12px}
+.firmenset p{color:var(--muted);max-width:70ch}
+
+/* ---------- VERGLEICH ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px}
+.cmp{border:1px solid var(--line);border-radius:var(--radius);padding:32px;background:var(--panel)}
+.cmp.win{border-color:var(--tungsten)}
+.cmp h4{font-family:'Poppins',sans-serif;font-size:1.1rem;margin-bottom:16px}
+.cmp ul{list-style:none}
+.cmp li{padding:9px 0;border-bottom:1px solid var(--line);color:var(--muted);font-size:.94rem;display:flex;justify-content:space-between;gap:12px}
+.cmp li b{color:var(--bone);font-weight:600;white-space:nowrap}
+.cmp.win li b{color:var(--tungsten)}
+@media(max-width:760px){.compare{grid-template-columns:1fr}}
+
+/* ---------- REFERENZEN ---------- */
+.logos{display:flex;gap:48px;flex-wrap:wrap;align-items:center;margin-top:30px}
+.logos span{font-family:'Poppins',sans-serif;font-weight:600;color:var(--muted);opacity:.7;font-size:1.05rem}
+
+/* ---------- FAQ ---------- */
+details{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;padding:22px 4px;font-weight:600;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:'Source Sans 3',sans-serif;color:var(--led);font-size:1.2rem;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 4px 22px;color:var(--muted);max-width:72ch}
+
+/* ---------- KONTAKT ---------- */
+.contact{background:var(--panel);border-top:1px solid var(--line)}
+.contact-in{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.contact h2{font-size:clamp(1.9rem,4vw,2.6rem);font-weight:800}
+.contact .lede{margin:16px 0 28px}
+.nap{font-family:'Source Sans 3',sans-serif;font-size:.84rem;color:var(--muted);line-height:2}
+@media(max-width:820px){.contact-in{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.85rem;display:block}
+.foot-in{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#produktion">Zum Inhalt springen</a>
+
+<nav aria-label="Hauptnavigation">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="CreativeCinema – Startseite"><img src="https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg" alt="CreativeCinema GmbH" style="height:42px;display:block"></a>
+    <div class="nav-links">
+      <a href="#studio">Studio mieten</a>
+      <a href="#produktion">Produktionen</a>
+      <a href="#vergleich">Kostenvergleich</a>
+      <a href="#projekte">Projekte</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-amber nav-cta" href="#kontakt">Verfügbarkeit anfragen</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO: Die Seite beginnt IN der LED-Wand -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="slate">
+      <span class="rec"><span class="rec-dot" aria-hidden="true"></span>REC</span>
+      <span class="tc" id="timecode">00:00:00:00</span>
+      <span class="tc">XR-STAGE&nbsp;01 · ERLANGEN</span>
+      <span class="tc" style="margin-left:auto;color:var(--led)">DIREKT. INNOVATIV. PRODUKTIONSSICHER.</span>
+    </div>
+    <div class="wall">
+      <div class="backdrop bd-desert active" data-bd="desert"></div>
+      <div class="backdrop bd-skyline" data-bd="skyline"></div>
+      <div class="backdrop bd-halle" data-bd="halle"></div>
+      <div class="backdrop bd-alpen" data-bd="alpen"></div>
+      <div class="wall-in">
+        <h1>Hollywood-Technologie, eine Stunde von Ihrem Werkstor entfernt.</h1>
+        <p class="sub">CreativeCinema ist Filmproduktion und XR-Studio in einem: 50&nbsp;m² LED-Wand mit Kameratracking in Erlangen – für Produktionen, die früher fünf Locations gebraucht hätten. Und für alle, die das Studio einfach mieten wollen.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-amber" href="#produktion">Produktion beauftragen</a>
+          <a class="btn btn-ghost" href="#studio">Studio mieten</a>
+        </div>
+      </div>
+      <div class="loc-chips" role="group" aria-label="Kulisse der LED-Wand wechseln">
+        <span class="mono">Kulisse wechseln – so schnell geht es auch am Drehtag:</span>
+        <button class="chip active" aria-pressed="true" data-target="desert">Wüste · Marokko</button>
+        <button class="chip" aria-pressed="false" data-target="skyline">Skyline · Nacht</button>
+        <button class="chip" aria-pressed="false" data-target="halle">Werkshalle</button>
+        <button class="chip" aria-pressed="false" data-target="alpen">Alpenpanorama</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROOF -->
+<div class="proof">
+  <div class="wrap proof-grid">
+    <div class="proof-item"><div class="proof-num">5</div><p>Locations an einem einzigen Drehtag – Kulissenwechsel in Minuten statt Umzugstagen.</p></div>
+    <div class="proof-item"><div class="proof-num">0</div><p>Wetterrisiko, Reisekosten und Drehgenehmigungen – das Set ist immer da, wo Sie sind.</p></div>
+    <div class="proof-item"><div class="proof-num">45+</div><p>Produktionen für Kunden von Siemens bis KUKA – und Ihr virtuelles Firmenset dreht unbegrenzt weiter.</p></div>
+  </div>
+</div>
+
+<!-- ZWEI WEGE -->
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Was suchen Sie?</span>
+    <h2 class="section-h">Zwei Wege ins Studio.</h2>
+    <div class="paths reveal">
+      <a class="path" href="#produktion">
+        <span class="mono">Für Unternehmen</span>
+        <h3>Produktion beauftragen</h3>
+        <p>Imagefilm, Recruiting-Video, Messefilm, Livestream oder monatlicher Content im Abo – konzipiert, gedreht und geschnitten von einem Team, unter einem Dach.</p>
+        <span class="path-link">Zu den Produktionen</span>
+      </a>
+      <a class="path" href="#studio">
+        <span class="mono">Für Agenturen, Fotografen & Produktionen</span>
+        <h3>Studio mieten</h3>
+        <p>Die LED-Stage als Ihr Set: buchbar ab halben Tagen, Dry Hire oder mit unserem Operator. Eigene Unreal-Umgebungen mitbringen oder aus der Set-Bibliothek wählen.</p>
+        <span class="path-link">Zur Studiovermietung</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO MIETEN -->
+<section class="studio" id="studio">
+  <div class="wrap">
+    <span class="eyebrow">Studiovermietung</span>
+    <h2 class="section-h">LED-Studio mieten in Erlangen – ab halben Tagen.</h2>
+    <p class="lede">Nordbayerns Virtual-Production-Stage für Film, Foto und Livestream. Sie drehen vor jeder Kulisse der Welt, ohne das Studio zu verlassen – mit Parkplätzen direkt vor der Tür und ebenerdiger Anlieferung.</p>
+    <div class="studio-grid reveal">
+      <div>
+        <table class="spec-table" aria-label="Technische Daten">
+          <tr><td>LED-Fläche</td><td>50 m² hochauflösende LED-Wand</td></tr>
+          <tr><td>Tracking</td><td>Kameratracking für perspektivisch korrekte Hintergründe (In-Camera VFX)</td></tr>
+          <tr><td>Engine</td><td>Unreal-Engine-Workflow, Echtzeit-Umgebungen, eigene Inhalte als Datei anlieferbar</td></tr>
+          <tr><td>Licht & Ton</td><td>Professionelles Licht-Setup, Tontechnik, Maske, Aufenthaltsbereich</td></tr>
+          <tr><td>Alternativ</td><td>Greenscreen-Setup auf Wunsch verfügbar</td></tr>
+          <tr><td>Standort</td><td>Gundstraße 13a, 91056 Erlangen · 20 Min. von Nürnberg</td></tr>
+        </table>
+      </div>
+      <div class="price-cards">
+        <div class="price"><div><h4>Dry Hire</h4><small>Studio + LED-Technik, Ihr Team produziert selbst.</small></div><span class="tag">ab 1.450 € / ½ Tag</span></div>
+        <div class="price featured"><div><h4>Studio + Operator</h4><small>Unser LED-/Tracking-Operator unterstützt Ihre Crew. Meistgebucht.</small></div><span class="tag">ab 2.500 € / Tag</span></div>
+        <div class="price"><div><h4>Full Service</h4><small>Crew, Licht, Kamera und Regieunterstützung – Angebot in 24 h.</small></div><span class="tag">auf Anfrage</span></div>
+        <a class="btn btn-amber" href="#kontakt" style="text-align:center">Verfügbarkeit anfragen</a>
+        <a class="btn btn-ghost" href="#kontakt" style="text-align:center">Studio besichtigen (Open Studio)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRTUAL PRODUCTION -->
+<section id="produktion">
+  <div class="wrap">
+    <span class="eyebrow">Virtual Production</span>
+    <h2 class="section-h">Ihr Film aus dem XR-Studio – 5 Locations an einem Drehtag.</h2>
+    <p class="lede">Produktfilm in der Wüste, Recruiting-Video auf dem Werksdach, Keynote vor der Skyline – an einem einzigen Drehtag, in Erlangen. Konzept, Dreh, LED-Stage und Postproduktion unter einem Dach.</p>
+    <div class="usecases reveal">
+      <div class="uc"><span class="mono">Marke</span><h4>Image- & Produktfilme</h4><p>Markenwelten, die es physisch nicht gibt – fotorealistisch und in Echtzeit am Set sichtbar.</p></div>
+      <div class="uc"><span class="mono">HR</span><h4>Recruiting-Videos</h4><p>Ein Drehtag, fünf Kulissen, fertige Clips für Karriereseite und Social – zum Festpreis.</p></div>
+      <div class="uc"><span class="mono">Messe</span><h4>Messefilme</h4><p>SPS, embedded world & Co.: Ihr Auftritt wird größer, als die Halle erlaubt – ohne Dreh im Betrieb.</p></div>
+      <div class="uc"><span class="mono">Live</span><h4>Livestreams & Events</h4><p>Townhalls und Keynotes mit broadcast-fähiger Kulisse statt Bürorückwand.</p></div>
+      <div class="uc"><span class="mono">Abo</span><h4>Content-Abos</h4><p>Monatliche Reels und Serienformate aus Ihrem festen virtuellen Set – planbar und wiedererkennbar.</p></div>
+      <div class="uc"><span class="mono">Daten</span><h4>CAD wird Kulisse</h4><p>Ihre Produkt- und Anlagendaten (CAD, BIM, 3D) werden zur begehbaren Filmkulisse.</p></div>
+    </div>
+    <div class="firmenset reveal">
+      <span class="mono" style="color:var(--led);font-weight:600">Der Effizienzhebel</span>
+      <h3>Einmal bauen, immer wieder drehen: Ihr virtuelles Firmenset.</h3>
+      <p>Wir digitalisieren Ihre Markenwelt – Showroom, Werkshalle oder abstrakte Brand-Umgebung – einmal als Unreal-Engine-Set. Jede weitere Produktion startet ab Minute 1 im fertigen Set: planbar, wiedererkennbar, zu einem Bruchteil der üblichen Produktionszeit. Das ist die Grundlage unserer Content-Abos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH -->
+<section id="vergleich" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Ehrlich gerechnet</span>
+    <h2 class="section-h">Was kostet ein Drehtag wirklich?</h2>
+    <div class="compare reveal">
+      <div class="cmp">
+        <h4>Klassischer Locationdreh</h4>
+        <ul>
+          <li>Locationmiete & Genehmigungen <b>ab 1.500 €</b></li>
+          <li>Reise & Übernachtung Crew <b>ab 1.200 €</b></li>
+          <li>Umbau-/Fahrtzeit zwischen Motiven <b>2–4 h/Tag</b></li>
+          <li>Wetterrisiko / Ersatztermin <b>unkalkulierbar</b></li>
+          <li>Locations pro Drehtag <b>1–2</b></li>
+        </ul>
+      </div>
+      <div class="cmp win">
+        <h4>Virtual Production bei CreativeCinema</h4>
+        <ul>
+          <li>Locationmiete & Genehmigungen <b>0 €</b></li>
+          <li>Reise & Übernachtung <b>0 €</b></li>
+          <li>Kulissenwechsel <b>Minuten</b></li>
+          <li>Wetterrisiko <b>keins</b></li>
+          <li>Locations pro Drehtag <b>5+</b></li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:26px"><a class="btn btn-ghost" href="#kontakt">Zum interaktiven Drehtag-Rechner</a></p>
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section id="projekte" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Projekte</span>
+    <h2 class="section-h">Referenzen mit Zahlen statt Adjektiven.</h2>
+    <p class="lede">45+ Produktionen u. a. für Siemens, KUKA, Daimler und Philips – jede Case Study nennt künftig eingesparte Drehtage, Locations und Budgets. [Bestehende Projektseite und Logo-Dateien aus der Mediathek einbinden.]</p>
+    <div class="logos reveal">
+      <span>Siemens</span><span>KUKA</span><span>Daimler</span><span>Philips</span><span>+ Ihre Marke</span>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Häufige Fragen</span>
+    <h2 class="section-h">Bevor Sie anfragen.</h2>
+    <div class="reveal">
+      <details><summary>Kann ich das Studio ohne Virtual-Production-Erfahrung mieten?</summary><p>Ja. Im Modell „Studio + Operator" bedient unser Team LED-Wand, Tracking und Unreal Engine – Ihr Team konzentriert sich auf Kamera und Inhalt.</p></details>
+      <details><summary>Was kostet eine Virtual-Production-Produktion?</summary><p>Einstiegsprojekte wie der Recruiting-Tag beginnen im niedrigen fünfstelligen Bereich – durch eingesparte Locations, Reisen und Drehtage liegt das Gesamtbudget häufig unter dem eines klassischen Drehs.</p></details>
+      <details><summary>Sieht man, dass es nicht echt ist?</summary><p>Bei korrektem Tracking und Licht: nein. Die Umgebung reagiert perspektivisch korrekt auf jede Kamerabewegung – im Gegensatz zum Greenscreen sehen Sie das fertige Bild bereits am Set.</p></details>
+      <details><summary>Wie kurzfristig kann ich buchen?</summary><p>Je nach Auslastung sind Buchungen innerhalb von fünf Werktagen möglich. Verfügbarkeit erfragen Sie am schnellsten über das Anfrageformular – Antwort innerhalb von 24 Stunden.</p></details>
+      <details><summary>Können wir unsere CAD-/3D-Daten verwenden?</summary><p>Ja. Produkt- und Anlagendaten (CAD, BIM, 3D-Modelle) bereiten wir für die Unreal Engine auf und machen sie zur begehbaren Filmkulisse.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="wrap contact-in">
+    <div>
+      <span class="eyebrow">Kontakt</span>
+      <h2>Drehtermin sichern – Antwort in 24&nbsp;Stunden.</h2>
+      <p class="lede">Schicken Sie uns Wunschtermin und Vorhaben. Im kostenlosen Tech-Briefing (15 Min.) klären wir Umgebungen, Kamera und Workflow.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-amber" href="mailto:as@creative-cinema.net">Verfügbarkeit anfragen</a>
+        <a class="btn btn-ghost" href="#top">Open-Studio-Termine</a>
+      </div>
+    </div>
+    <div class="nap">
+      CREATIVECINEMA GMBH<br>
+      GUNDSTRASSE 13A · 91056 ERLANGEN<br>
+      20 MIN. VON NÜRNBERG · PARKPLÄTZE AM STUDIO<br>
+      AS@CREATIVE-CINEMA.NET<br><br>
+      DIREKT. INNOVATIV. PRODUKTIONSSICHER.
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.</span>
+    <span><a href="#">Impressum</a> · <a href="#">Datenschutz</a> · <a href="#">LinkedIn</a></span>
+  </div>
+</footer>
+
+<script>
+// Kulissen-Wechsler (Signatur-Element: die LED-Wand demonstriert sich selbst)
+const chips=document.querySelectorAll('.chip');
+const backs=document.querySelectorAll('.backdrop');
+chips.forEach(c=>c.addEventListener('click',()=>{
+  chips.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false');});
+  c.classList.add('active');c.setAttribute('aria-pressed','true');
+  backs.forEach(b=>b.classList.toggle('active',b.dataset.bd===c.dataset.target));
+}));
+// Timecode
+const tc=document.getElementById('timecode');
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduced){let f=0;setInterval(()=>{f=(f+1)%25;const d=new Date();
+  tc.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()].map(n=>String(n).padStart(2,'0')).join(':')+':'+String(f).padStart(2,'0');},40);}
+// Scroll-Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

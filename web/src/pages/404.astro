@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+---
+<Base lang="de" title="Seite nicht gefunden | CreativeCinema" description="Diese Seite existiert nicht." hasEN={false}>
+  <meta slot="head" name="robots" content="noindex" />
+  <SiteNav />
+  <section class="air" style="min-height:62vh;display:flex;align-items:center">
+    <div class="wrap" style="text-align:center">
+      <span class="eyebrow" style="justify-content:center">Fehler 404</span>
+      <h1 style="font-size:clamp(2.4rem,8vw,4.6rem);font-weight:800;letter-spacing:-.02em;margin-bottom:16px">Cut. Diese Szene gibt es nicht.</h1>
+      <p class="lede" style="margin:0 auto 30px">Die gesuchte Seite wurde verschoben oder existiert nicht mehr. Zurück ans Set?</p>
+      <div class="btn-row" style="justify-content:center">
+        <a class="btn btn-primary magnetic" href="/">Zur Startseite <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/studio/led-studio-mieten/">Studio mieten</a>
+      </div>
+    </div>
+  </section>
+  <SiteFooter />
+</Base>

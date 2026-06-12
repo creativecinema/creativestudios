@@ -1,0 +1,26 @@
+---
+// Navigation für Unterseiten (Routen-basiert). Home ist content-getrieben (Home.astro).
+interface Props { active?: string }
+const { active = '' } = Astro.props;
+const logo = 'https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg';
+const links = [
+  { key: 'studio', label: 'Studio mieten', href: '/studio/led-studio-mieten/' },
+  { key: 'vp', label: 'Virtual Production', href: '/xr-studio/virtual-production/' },
+  { key: 'calc', label: 'Drehtag-Rechner', href: '/wissen/kosten-drehtag/' },
+  { key: 'projects', label: 'Projekte', href: '/#projekte' },
+];
+---
+<nav class="site" aria-label="Hauptnavigation">
+  <div class="wrap nav-in">
+    <a class="brand" href="/" aria-label="CreativeCinema – Startseite">
+      <img src={logo} alt="CreativeCinema" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+      <span class="word" style="display:none">Creative<em>Cinema</em></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menü" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <div class="nav-links" id="navlinks">
+      {links.map((l) => <a href={l.href} aria-current={active === l.key ? 'page' : undefined}>{l.label}</a>)}
+      <a class="btn btn-primary magnetic" href="/#kontakt">Verfügbarkeit anfragen</a>
+      <span class="lang" aria-label="Sprache"><a href="/" aria-current="true">DE</a><a href="/en/">EN</a></span>
+    </div>
+  </div>
+</nav>

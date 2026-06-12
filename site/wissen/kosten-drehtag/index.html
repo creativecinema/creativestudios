@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was kostet ein Drehtag wirklich? Location vs. Studio | CreativeCinema</title>
+<meta name="description" content="Interaktiver Kostenvergleich: klassischer Locationdreh vs. Virtual Production im XR-Studio – mit realistischen Posten. Rechnen Sie Ihr Projekt selbst durch.">
+<link rel="canonical" href="https://creative-cinema.de/wissen/kosten-drehtag/">
+<meta name="theme-color" content="#101114">
+<link rel="icon" href="https://creative-cinema.de/wp-content/uploads/2023/01/CC_Logo_Rocket.svg" type="image/svg+xml">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@type":"WebApplication",
+  "name":"Drehtag-Kostenrechner",
+  "applicationCategory":"BusinessApplication","operatingSystem":"Web",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},
+  "publisher":{"@type":"Organization","name":"CreativeCinema GmbH"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/cc.css">
+</head>
+<body>
+<div class="progress" aria-hidden="true"></div>
+<a class="skip-link" href="#rechner">Zum Rechner springen</a>
+
+<nav class="site" aria-label="Hauptnavigation">
+  <div class="wrap nav-in">
+    <a class="brand" href="../../index.html" aria-label="CreativeCinema – Startseite">
+      <img src="https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg" alt="CreativeCinema" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">
+      <span class="word" style="display:none">Creative<em>Cinema</em></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menü" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <div class="nav-links" id="navlinks">
+      <a href="../../studio/led-studio-mieten/">Studio mieten</a>
+      <a href="../../xr-studio/virtual-production/">Virtual Production</a>
+      <a href="../../index.html#projekte">Projekte</a>
+      <a class="btn btn-primary" href="../../index.html#kontakt">Verfügbarkeit anfragen</a>
+    </div>
+  </div>
+</nav>
+
+<header class="subhero">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Brotkrumen">
+      <a href="../../index.html">Start</a> <span>/</span> Wissen <span>/</span> Drehtag-Rechner
+    </nav>
+    <span class="eyebrow">Ehrlich gerechnet</span>
+    <h1>Was kostet ein Drehtag wirklich?</h1>
+    <p class="lede">Ein klassischer Locationdreh hat versteckte Posten: Genehmigungen, Anreise, Umbauzeit, Wetterrisiko. Stellen Sie hier Ihr Projekt ein und vergleichen Sie es direkt mit einer Produktion im XR-Studio – mit realistischen Annahmen, transparent aufgeschlüsselt.</p>
+  </div>
+</header>
+
+<!-- ===================== DER RECHNER ==================================== -->
+<section id="rechner" style="padding-top:24px">
+  <div class="wrap">
+    <div class="calc">
+      <!-- Eingaben -->
+      <div class="calc-inputs">
+        <div class="field">
+          <label for="tage"><span class="lab">Drehtage</span><span class="val" id="tage-val">2</span></label>
+          <input type="range" id="tage" min="1" max="8" step="1" value="2" aria-describedby="tage-hint">
+          <span class="hint" id="tage-hint">Wie viele Tage wird gedreht?</span>
+        </div>
+        <div class="field">
+          <label for="locs"><span class="lab">Verschiedene Locations im Projekt</span><span class="val" id="locs-val">4</span></label>
+          <input type="range" id="locs" min="1" max="6" step="1" value="4" aria-describedby="locs-hint">
+          <span class="hint" id="locs-hint">Wüste, Werkshalle, Skyline … – im Studio alles an einem Ort.</span>
+        </div>
+        <div class="field">
+          <span class="lab" style="display:block;margin-bottom:12px">Crew-Anreise</span>
+          <div class="toggle-row" role="group" aria-label="Crew-Anreise">
+            <button class="toggle" data-group="anreise" data-value="regional" aria-pressed="false">Regional</button>
+            <button class="toggle" data-group="anreise" data-value="ueber" aria-pressed="true">Überregional</button>
+          </div>
+          <span class="hint">Überregional = Reise &amp; Übernachtung für die Crew.</span>
+        </div>
+        <div class="field">
+          <span class="lab" style="display:block;margin-bottom:12px">Außendreh / wetterabhängig?</span>
+          <div class="toggle-row" role="group" aria-label="Wetterabhängigkeit">
+            <button class="toggle" data-group="wetter" data-value="ja" aria-pressed="true">Ja</button>
+            <button class="toggle" data-group="wetter" data-value="nein" aria-pressed="false">Nein</button>
+          </div>
+          <span class="hint">Außendreh = Rückstellung für mögliche Ersatztermine.</span>
+        </div>
+      </div>
+
+      <!-- Ergebnis -->
+      <div class="calc-result" aria-live="polite">
+        <span class="mono" style="color:var(--led)">Geschätzte Produktionskosten</span>
+        <div class="bars" style="margin-top:18px">
+          <div class="bar-row">
+            <div class="bar-head"><span class="name">Klassischer Locationdreh</span><span class="sum" id="sum-loc">–</span></div>
+            <div class="bar-track"><div class="bar-fill loc" id="bar-loc" style="width:0"></div></div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-head"><span class="name">Virtual Production im XR-Studio</span><span class="sum" id="sum-vp" style="color:var(--led)">–</span></div>
+            <div class="bar-track"><div class="bar-fill vp" id="bar-vp" style="width:0"></div></div>
+          </div>
+        </div>
+        <div class="savings">
+          <span class="sv-lab" id="sv-lab">Ihr Vorteil mit Virtual Production</span>
+          <div class="sv-num" id="sv-num">– €</div>
+          <p class="sv-sub" id="sv-sub">Stellen Sie Ihr Projekt links ein.</p>
+        </div>
+        <details class="breakdown">
+          <summary>Aufschlüsselung &amp; Annahmen anzeigen</summary>
+          <table id="bd-table"><tbody></tbody></table>
+          <p class="hint" style="margin-top:12px">Alle Werte sind realistische Branchen-Annahmen (netto, zzgl. MwSt.) zur Veranschaulichung – kein verbindliches Angebot. Ihr individuelles Festpreis-Angebot erhalten Sie innerhalb von 24 Stunden.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ERKLÄRUNG / SEO-TEXT =========================== -->
+<section class="panel-bg">
+  <div class="wrap-narrow prose">
+    <span class="eyebrow">Warum die Lücke so groß ist</span>
+    <h2>Die versteckten Kosten des Locationdrehs</h2>
+    <p>Auf der LED-Wand sehen Ihr Team und Ihre Protagonisten die fertige Umgebung in Echtzeit – keine Compositing-Überraschungen in der Post, realistische Reflexionen und Lichtstimmung direkt im Bild. Kulissenwechsel dauern Minuten statt Umzugstage: fünf Locations an einem Drehtag sind der Normalfall, nicht die Ausnahme. Und das Wetter ist Ihnen garantiert egal.</p>
+    <p>Der eigentliche Hebel kommt erst danach: Wir digitalisieren Ihre Markenwelt <strong>einmal</strong> als Unreal-Engine-Set. Jede weitere Produktion startet ab Minute 1 im fertigen Set – die hier gezeigte Ersparnis pro Drehtag wiederholt sich also bei jeder Folgeproduktion.</p>
+  </div>
+</section>
+
+<!-- ===================== CTA-BAND ====================================== -->
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2>Rechnen wir Ihr konkretes Projekt durch.</h2>
+      <p>Schicken Sie uns Vorhaben und Wunschtermin – im kostenlosen 15-Minuten-Tech-Briefing klären wir Umgebungen, Kamera und Workflow. Festpreis-Angebot in 24 Stunden.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="../../index.html#kontakt">Projekt anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="../../xr-studio/virtual-production/">Virtual Production ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-in">
+    <span>© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.</span>
+    <span><a href="../../index.html">Start</a> · <a href="#">Impressum</a> · <a href="#">Datenschutz</a></span>
+  </div>
+</footer>
+
+<script src="../../assets/js/cc.js"></script>
+<script>
+/* ---- Drehtag-Rechner: transparentes, ehrliches Kostenmodell ----------- */
+(function(){
+  var A = {                       // Annahmen (netto €), bewusst nachvollziehbar
+    crewTag:   3500,              // Drehcrew, Kamera & Regie – auf BEIDEN Seiten gleich
+    locFix:    1500,              // Klassisch: Location & Genehmigung je Motiv
+    reiseTag:  1200,              // Klassisch: Reise & Übernachtung je Drehtag (überregional)
+    umbauTag:   600,              // Klassisch: Umbau-/Fahrtzeit-Verlust je Drehtag
+    wetterPct:  0.18,             // Klassisch: Wetter-Rückstellung auf Drehkosten
+    stageTag:  2500               // Virtual Production: Stage + Operator je Drehtag
+  };
+  var state = { tage:2, locs:4, anreise:'ueber', wetter:'ja' };
+  var euro = function(n){ return Math.round(n).toLocaleString('de-DE') + ' €'; };
+
+  function calc(){
+    var t=state.tage, l=state.locs;
+    var crew = A.crewTag*t;
+    // --- Klassischer Locationdreh ---
+    var loc_location = A.locFix*l;
+    var loc_reise    = state.anreise==='ueber' ? A.reiseTag*t : 0;
+    var loc_umbau    = A.umbauTag*t;
+    var loc_drehbasis= crew + loc_location + loc_reise + loc_umbau;
+    var loc_wetter   = state.wetter==='ja' ? loc_drehbasis*A.wetterPct : 0;
+    var loc_total    = loc_drehbasis + loc_wetter;
+    // --- Virtual Production ---
+    var vp_stage = A.stageTag*t;
+    var vp_total = crew + vp_stage;   // 0 Location, 0 Reise, 0 Wetter, 0 Umbau
+    return {
+      loc_total:loc_total, vp_total:vp_total,
+      rows:[
+        ['Drehcrew, Kamera &amp; Regie ('+t+' Tg.)', euro(crew), euro(crew)],
+        ['Location &amp; Genehmigungen ('+l+'×)', euro(loc_location), '0 €'],
+        ['Reise &amp; Übernachtung', euro(loc_reise), '0 €'],
+        ['Umbau-/Fahrtzeit-Verlust', euro(loc_umbau), '0 €'],
+        ['Wetter-Rückstellung (18 %)', euro(loc_wetter), '0 €'],
+        ['XR-Stage + Operator ('+t+' Tg.)', '0 €', euro(vp_stage)]
+      ]
+    };
+  }
+
+  function render(){
+    var r=calc();
+    var max=Math.max(r.loc_total, r.vp_total, 1);
+    document.getElementById('sum-loc').textContent = euro(r.loc_total);
+    document.getElementById('sum-vp').textContent  = euro(r.vp_total);
+    document.getElementById('bar-loc').style.width = (r.loc_total/max*100)+'%';
+    document.getElementById('bar-vp').style.width  = (r.vp_total/max*100)+'%';
+
+    var diff = r.loc_total - r.vp_total;
+    var lab=document.getElementById('sv-lab'), num=document.getElementById('sv-num'), sub=document.getElementById('sv-sub');
+    if(diff>=0){
+      lab.textContent='Ihr Vorteil mit Virtual Production';
+      num.textContent='– '+euro(diff); num.style.color='var(--led)';
+      sub.textContent='So viel sparen Sie an diesem Drehtag-Szenario – und erneut bei jeder Folgeproduktion im selben virtuellen Set.';
+    } else {
+      lab.textContent='Hier liegt der Locationdreh vorn';
+      num.textContent='+ '+euro(-diff); num.style.color='var(--muted)';
+      sub.textContent='Bei wenigen Motiven ohne Anreise lohnt der klassische Dreh. Virtual Production spielt seine Stärke bei mehreren Locations, Anreise oder Außendreh aus – Regler anpassen.';
+    }
+
+    var tb=document.querySelector('#bd-table tbody'); tb.innerHTML='';
+    var head='<tr><td style="color:var(--muted)">Posten</td><td style="color:var(--muted)">Klassisch</td><td style="color:var(--led)">Studio</td></tr>';
+    tb.insertAdjacentHTML('beforeend', head);
+    r.rows.forEach(function(row){
+      tb.insertAdjacentHTML('beforeend','<tr><td>'+row[0]+'</td><td>'+row[1]+'</td><td>'+row[2]+'</td></tr>');
+    });
+    tb.insertAdjacentHTML('beforeend','<tr style="font-weight:700"><td>Gesamt</td><td>'+euro(r.loc_total)+'</td><td style="color:var(--led)">'+euro(r.vp_total)+'</td></tr>');
+  }
+
+  // Slider
+  ['tage','locs'].forEach(function(id){
+    var el=document.getElementById(id);
+    el.addEventListener('input', function(){
+      state[id]=parseInt(el.value,10);
+      document.getElementById(id+'-val').textContent = el.value + (id==='locs'?'':'');
+      render();
+    });
+  });
+  // Toggles
+  document.querySelectorAll('.toggle').forEach(function(b){
+    b.addEventListener('click', function(){
+      var g=b.dataset.group;
+      document.querySelectorAll('.toggle[data-group="'+g+'"]').forEach(function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true');
+      state[g]=b.dataset.value;
+      render();
+    });
+  });
+  render();
+})();
+</script>
+</body>
+</html>

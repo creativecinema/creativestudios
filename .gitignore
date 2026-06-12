@@ -1,0 +1,17 @@
+# Node / Astro
+web/node_modules/
+web/dist/
+web/.astro/
+
+# Secrets / lokale Konfiguration – NIE committen
+web/.env
+web/.env.production
+web/.env.deploy
+**/.env
+**/.env.deploy
+
+# OS / Editor
+.DS_Store
+*.log
+.vscode/
+.idea/

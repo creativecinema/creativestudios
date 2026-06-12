@@ -1,0 +1,145 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SiteNav from '../../../components/SiteNav.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+
+const title = 'Virtual Production in Bayern – XR-Studio Produktion | CreativeCinema';
+const description = 'Film- und Videoproduktion im eigenen XR-Studio: 5 Locations an einem Drehtag, wetterunabhängig, ohne Reisekosten. Virtual Production für Industrie & Mittelstand – aus Erlangen.';
+const path = 'xr-studio/virtual-production/';
+
+const uses = [
+  { tag: 'Marke', title: 'Image- & Produktfilme', desc: 'Markenwelten, die es physisch nicht gibt – fotorealistisch und in Echtzeit am Set sichtbar.' },
+  { tag: 'HR', title: 'Recruiting-Videos', desc: 'Videos, die Bewerber wirklich ansehen – ein Drehtag, mehrere Kulissen, zum Festpreis.' },
+  { tag: 'Serie', title: 'Serien-Content', desc: 'Ihr virtuelles Firmenset wird einmal gebaut und steht für jede Folge bereit – ideal für monatliche Reels, Schulungen und Produktupdates.' },
+  { tag: 'Live', title: 'Livestreams & Events', desc: 'Hybride Events mit broadcast-fähiger Kulisse statt Bürorückwand.' },
+  { tag: 'Messe', title: 'Messefilme', desc: 'Ihr Auftritt wird größer, als die Halle erlaubt – ohne Dreh im laufenden Betrieb.' },
+  { tag: 'Daten', title: 'CAD wird Kulisse', desc: 'Produkt- und Anlagendaten (CAD, BIM, 3D) werden zur begehbaren Filmkulisse.' },
+];
+const faqs = [
+  { q: 'Was kostet eine Virtual-Production-Produktion?', a: 'Einstiegsprojekte (z. B. Recruiting-Tag im Studio) beginnen im niedrigen fünfstelligen Bereich – durch eingesparte Locations, Reisen und Drehtage liegt das Gesamtbudget häufig unter dem eines klassischen Drehs. Festpreispakete finden Sie unter Lösungen.' },
+  { q: 'Für welche Unternehmensgröße lohnt sich das?', a: 'Ab dem ersten professionellen Film. Besonders stark ist der Effekt bei Serien-Content: je mehr Produktionen, desto stärker amortisiert sich das einmal gebaute virtuelle Set.' },
+  { q: 'Sieht man, dass es nicht echt ist?', a: 'Bei korrektem Tracking und Licht: nein. Die Umgebung reagiert perspektivisch korrekt auf jede Kamerabewegung – im Gegensatz zum Greenscreen sehen Sie das fertige Bild bereits am Set.' },
+  { q: 'Können wir unsere CAD-/3D-Daten verwenden?', a: 'Ja. Produkt- und Anlagendaten (CAD, BIM, 3D-Modelle) bereiten wir für die Unreal Engine auf und machen sie zur begehbaren Filmkulisse.' },
+];
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Virtual Production / XR-Filmproduktion',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressCountry: 'DE' } },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Bayern'], url: 'https://creative-cinema.de/' + path },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://creative-cinema.de/' },
+    { '@type': 'ListItem', position: 2, name: 'Virtual Production', item: 'https://creative-cinema.de/xr-studio/virtual-production/' },
+  ] },
+];
+---
+<Base lang="de" title={title} description={description} path={path} hasEN={false} jsonld={jsonld}>
+  <SiteNav active="vp" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a> <span>/</span> XR-Studio <span>/</span> Virtual Production</nav>
+      <span class="eyebrow">Virtual Production · Metropolregion Nürnberg</span>
+      <h1>Virtual Production: Ihr Film aus dem XR-Studio – 5 Locations an einem Drehtag</h1>
+      <p class="lede">Produktfilm in der Wüste, Recruiting-Video auf dem Werksdach, Keynote vor der Skyline – an einem einzigen Drehtag, in Erlangen. Als Filmproduktion mit eigenem XR-Studio verbinden wir das, was sonst getrennt eingekauft wird: Konzept, Dreh, LED-Stage und Postproduktion unter einem Dach.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="#anfrage">Projekt anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Kostenvergleich ansehen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" style="margin:8px auto 0">
+    <div class="media reveal">
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <div class="play-center"><button class="play-btn" data-lightbox aria-label="Showreel abspielen"></button><span class="label">Konzept · Dreh · LED-Stage · Postproduktion</span></div>
+      <div class="media-ph"><span class="mono">Making-of / Showreel</span><p class="ph-note">Making-of-Clip einer Studio-Produktion einsetzen.</p></div>
+    </div>
+  </div>
+
+  <section id="kosten">
+    <div class="wrap">
+      <span class="eyebrow">Der Kostenvorteil</span>
+      <h2 class="section-h">Was Virtual Production Sie NICHT kostet.</h2>
+      <p class="lede">Keine Reise- und Übernachtungskosten für die Crew. Keine Drehgenehmigungen, keine Locationmiete, kein Wetterrisiko, keine Absperrungen im laufenden Betrieb. Kein zweiter Drehtag, weil die Sonne falsch stand. Genau hier entsteht der Kostenvorteil gegenüber dem klassischen Locationdreh.</p>
+      <div class="compare reveal">
+        <div class="cmp">
+          <h4>Klassischer Locationdreh</h4>
+          <p class="tagline">Viele Gewerke, viele Variablen.</p>
+          <ul>
+            <li>Reise &amp; Übernachtung <b>kostet</b></li>
+            <li>Drehgenehmigungen <b>nötig</b></li>
+            <li>Locationmiete <b>je Motiv</b></li>
+            <li>Wetterrisiko <b>hoch</b></li>
+            <li>Locations pro Tag <b>1–2</b></li>
+          </ul>
+        </div>
+        <div class="cmp win">
+          <h4>Virtual Production im XR-Studio</h4>
+          <p class="tagline">Ein Ort, ein Team, planbares Budget.</p>
+          <ul>
+            <li>Reise &amp; Übernachtung <b>0 €</b></li>
+            <li>Drehgenehmigungen <b>entfallen</b></li>
+            <li>Locationmiete <b>0 €</b></li>
+            <li>Wetterrisiko <b>keins</b></li>
+            <li>Locations pro Tag <b>5+</b></li>
+          </ul>
+        </div>
+      </div>
+      <div class="btn-row" style="margin-top:26px">
+        <a class="btn btn-primary magnetic" href="/wissen/kosten-drehtag/">Rechnen Sie es selbst nach <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-bg" id="leistungen">
+    <div class="wrap">
+      <span class="eyebrow">Was wir produzieren</span>
+      <h2 class="section-h">Was wir im XR-Studio für Sie produzieren.</h2>
+      <div class="usecases">
+        {uses.map((u, i) => (
+          <div class={`uc reveal${i % 3 === 1 ? ' d1' : i % 3 === 2 ? ' d2' : ''}`}><span class="mono">{u.tag}</span><h4>{u.title}</h4><p>{u.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="firmenset">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Der Effizienzhebel</span>
+      <h2>Einmal bauen, immer wieder drehen: Ihr virtuelles Firmenset.</h2>
+      <p>Der eigentliche Effizienzhebel: Wir digitalisieren Ihre Markenwelt (Showroom, Werkshalle, abstrakte Brand-Umgebung) <strong>einmal</strong> als Unreal-Engine-Set. Jede weitere Produktion startet ab Minute 1 im fertigen Set – planbar, wiedererkennbar, zu einem Bruchteil der üblichen Produktionszeit. Das ist die Grundlage unserer Content-Abos.</p>
+    </div>
+    <div class="wrap" style="margin-top:8px">
+      <div class="callout reveal">
+        <span class="mono accent">Warum CreativeCinema?</span>
+        <h3>Das einzige produzierende XR-Studio der Metropolregion Nürnberg.</h3>
+        <p>Sie buchen keine Technik, sondern ein eingespieltes Team aus Konzept, Regie, LED-Operation und Postproduktion. Mittelstandstauglich kalkuliert – Sie brauchen kein Konzernbudget und keine Anreise nach München. Referenzprojekte u. a. für Industrie- und Gesundheitskunden.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage" class="tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Projekt anfragen.</h2>
+        <p>Schicken Sie uns Ihr Vorhaben – im kostenlosen Tech-Briefing klären wir Umgebungen, Kamera und Workflow. Festpreis-Pakete für Recruiting-Tag und Messefilm auf Anfrage.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href="mailto:as@creative-cinema.net?subject=Projektanfrage%20Virtual%20Production">Projekt anfragen <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Drehtag-Rechner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="section-h">Gut zu wissen.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Base>

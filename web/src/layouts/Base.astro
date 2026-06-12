@@ -1,0 +1,59 @@
+---
+// Basis-Layout: <head>, per-Seite SEO (Canonical, hreflang, JSON-LD, OpenGraph),
+// globale Chrome (Filmkorn, Letterbox-Intro, Scroll-Progress) und das Design-System.
+export interface Props {
+  lang: 'de' | 'en';
+  title: string;
+  description: string;
+  path?: string;          // z. B. "" (Start) oder "studio/led-studio-mieten/"
+  hasEN?: boolean;        // existiert eine EN-Variante dieser Seite?
+  jsonld?: object[];      // Schema.org-Objekte für den <head>
+  ogImage?: string;       // absolute URL; Default unten
+}
+const {
+  lang, title, description, path = '', hasEN = true, jsonld = [],
+  ogImage,
+} = Astro.props;
+
+const base = 'https://creative-cinema.de/';
+const canonical = lang === 'de' ? base + path : base + 'en/' + path;
+const altDe = base + path;
+const altEn = base + 'en/' + path;
+const og = ogImage || base + 'og-cover.svg';
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <script is:inline>document.documentElement.className+=' js';addEventListener('DOMContentLoaded',function(){document.body.classList.add('loaded')});setTimeout(function(){document.body&&document.body.classList.add('loaded')},1600);</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="de" href={altDe} />
+  {hasEN && <link rel="alternate" hreflang="en" href={altEn} />}
+  <link rel="alternate" hreflang="x-default" href={altDe} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+  <meta property="og:image" content={og} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#101114" />
+  <link rel="icon" href="https://creative-cinema.de/wp-content/uploads/2023/01/CC_Logo_Rocket.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/cc.css" />
+  {jsonld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
+  <slot name="head" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cinebars" aria-hidden="true"><i class="top"></i><i class="bot"></i></div>
+  <div class="progress" aria-hidden="true"></div>
+  <slot />
+  <script is:inline src="/scripts/cc.js"></script>
+</body>
+</html>

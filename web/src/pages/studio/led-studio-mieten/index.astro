@@ -1,0 +1,161 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SiteNav from '../../../components/SiteNav.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+
+const title = 'LED-Studio mieten in Erlangen bei Nürnberg | CreativeCinema';
+const description = 'Virtual-Production-Studio mit 50 m² LED-Wand & Kameratracking mieten – ab halben Tagen, inkl. Technik-Crew auf Wunsch. Standort Erlangen, 20 Min. von Nürnberg. Jetzt Termin anfragen.';
+const path = 'studio/led-studio-mieten/';
+
+const specs = [
+  ['LED-Fläche', '50 m² hochauflösende LED-Wand'],
+  ['Tracking', 'Kameratracking für perspektivisch korrekte Hintergründe (In-Camera VFX)'],
+  ['Engine', 'Unreal-Engine-Workflow für Echtzeit-Umgebungen; eigene Inhalte als Datei anlieferbar'],
+  ['Set-Bibliothek', 'Wachsende Auswahl fertiger Umgebungen – oder Sie bringen Ihre eigene mit'],
+  ['Licht & Ton', 'Professionelles Licht-Setup, Tontechnik, Maske, Aufenthaltsbereich'],
+  ['Alternativ', 'Greenscreen-Setup auf Wunsch verfügbar'],
+  ['Logistik', 'Parken direkt am Studio, ebenerdige Anlieferung'],
+  ['Standort', 'Gundstraße 13a, 91056 Erlangen · 20 Min. von Nürnberg'],
+];
+const prices = [
+  { name: 'Dry Hire', desc: 'Studio + LED-Technik, Ihr Team produziert selbst.', tag: 'ab 1.450 € / ½ Tag' },
+  { name: 'Studio + Operator', desc: 'Unser LED-/Tracking-Operator unterstützt Ihr Team an LED-Wand, Tracking und Unreal Engine.', tag: 'ab 2.500 € / Tag', featured: true },
+  { name: 'Full Service', desc: 'Crew, Licht, Kamera und Regieunterstützung – individuelles Angebot innerhalb von 24 Stunden.', tag: 'auf Anfrage' },
+];
+const faqs = [
+  { q: 'Kann ich das Studio ohne eigene Virtual-Production-Erfahrung mieten?', a: 'Ja. Im Modell „Studio + Operator“ bedient unser Team LED-Wand, Tracking und Unreal Engine – Ihr Team konzentriert sich auf Kamera und Inhalt.' },
+  { q: 'Wie kurzfristig kann ich buchen?', a: 'Je nach Auslastung sind Buchungen innerhalb von 5 Werktagen möglich; Verfügbarkeit erfragen Sie am schnellsten über das Formular.' },
+  { q: 'Welche Inhalte kann die LED-Wand darstellen?', a: 'Fotorealistische 3D-Umgebungen (Unreal Engine), 360°-Footage, Plates, Grafiken und Markenwelten – eigene Inhalte liefern Sie einfach als Datei an.' },
+  { q: 'Gibt es auch Greenscreen?', a: 'Ja, ein Greenscreen-Setup ist auf Wunsch verfügbar – in den meisten Fällen ersetzt die LED-Wand ihn jedoch inklusive der Nachbearbeitung.' },
+  { q: 'Wo liegt das Studio?', a: 'In Erlangen (Gundstraße 13a), rund 20 Minuten von Nürnberg, mit Parkplätzen direkt am Gebäude.' },
+];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', serviceType: 'LED-Studio / Virtual-Production-Stage Vermietung',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressCountry: 'DE' } },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Bayern'], url: 'https://creative-cinema.de/' + path,
+    offers: [
+      { '@type': 'Offer', name: 'Dry Hire', price: '1450', priceCurrency: 'EUR', description: 'Studio + LED-Technik, halber Tag' },
+      { '@type': 'Offer', name: 'Studio + Operator', price: '2500', priceCurrency: 'EUR', description: 'Studio mit LED-/Tracking-Operator, pro Tag' },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://creative-cinema.de/' },
+    { '@type': 'ListItem', position: 2, name: 'Studio', item: 'https://creative-cinema.de/studio/led-studio-mieten/' },
+  ] },
+];
+---
+<Base lang="de" title={title} description={description} path={path} hasEN={false} jsonld={jsonld}>
+  <SiteNav active="studio" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a> <span>/</span> Studio <span>/</span> LED-Studio mieten</nav>
+      <span class="eyebrow">Studiovermietung Erlangen / Nürnberg</span>
+      <h1>LED-Studio mieten in Erlangen – Virtual Production Stage für Film, Foto und Livestream</h1>
+      <p class="lede">Mieten Sie Nordbayerns Virtual-Production-Studio: 50&nbsp;m² hochauflösende LED-Wand mit Kameratracking, Licht- und Tontechnik – buchbar ab halben Tagen, mit oder ohne Crew. Ob Werbedreh, Fotoshooting, Recruiting-Video oder Livestream: Sie drehen vor jeder Kulisse der Welt, ohne das Studio zu verlassen.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="#anfrage">Verfügbarkeit anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#preise">Preise ansehen</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" style="margin:8px auto 0">
+    <div class="media reveal">
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <div class="play-center"><button class="play-btn" data-lightbox aria-label="Studio-Rundgang abspielen"></button><span class="label">XR-Stage 01 · 50 m² · Kameratracking</span></div>
+      <div class="media-ph"><span class="mono">Studio-/Stage-Foto</span><p class="ph-note">Echtes Foto oder Rundgang-Video der LED-Stage einsetzen.</p></div>
+    </div>
+  </div>
+
+  <section id="warum">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Der Unterschied</span>
+      <h2>Warum eine LED-Wand statt Greenscreen oder Location?</h2>
+      <p>Auf der LED-Wand sehen Ihr Team und Ihre Protagonisten die fertige Umgebung in Echtzeit – keine Compositing-Überraschungen in der Post, realistische Reflexionen und Lichtstimmung direkt im Bild. Kulissenwechsel dauern Minuten statt Umzugstage: <strong>fünf Locations an einem Drehtag</strong> sind der Normalfall, nicht die Ausnahme. Und das Wetter ist Ihnen garantiert egal.</p>
+    </div>
+  </section>
+
+  <section class="panel-bg" id="technik">
+    <div class="wrap">
+      <span class="eyebrow">Technik &amp; Ausstattung</span>
+      <h2 class="section-h">Alles an Bord – Sie bringen nur Ihr Projekt mit.</h2>
+      <div class="split reveal">
+        <table class="spec-table" aria-label="Technische Daten des Studios">
+          {specs.map(([k, v]) => (<tr><td>{k}</td><td>{v}</td></tr>))}
+        </table>
+        <div class="callout" style="margin:0">
+          <span class="mono accent">In Echtzeit statt in der Post</span>
+          <h3>What you see is what you get.</h3>
+          <p>Die Umgebung reagiert perspektivisch korrekt auf jede Kamerabewegung. Ihr Kunde sieht das fertige Bild bereits am Set – Abnahmen werden zur Formsache, böse Überraschungen in der Nachbearbeitung entfallen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="preise">
+    <div class="wrap">
+      <span class="eyebrow">Mietmodelle &amp; Preise</span>
+      <h2 class="section-h">Buchbar ab halben Tagen – mit oder ohne Crew.</h2>
+      <p class="lede">Alle Preise zzgl. MwSt.; Agenturkonditionen für Rahmenbuchungen auf Anfrage.</p>
+      <div class="price-cards reveal" style="max-width:760px">
+        {prices.map((p) => (
+          <div class={`price${p.featured ? ' featured' : ''}`}><div><h4>{p.name}</h4><small>{p.desc}</small></div><span class="tag">{p.tag}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Zielgruppe</span>
+      <h2>Für wen ist das Studio gedacht?</h2>
+      <ul>
+        <li>Werbe- und Kreativagenturen ohne eigene Studio-Infrastruktur</li>
+        <li>Fotografen mit anspruchsvollen Produktionen</li>
+        <li>Produktionsfirmen mit Virtual-Production-Bedarf</li>
+        <li>Unternehmen mit Livestreams, Townhalls und Keynotes</li>
+        <li>Alle, die für solche Bilder bisher nach München in deutlich größere (und teurere) Volumes fahren mussten</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">So läuft Ihre Buchung ab</span>
+      <h2 class="section-h">In drei Schritten zum Drehtag.</h2>
+      <div class="steps reveal">
+        <div class="step"><div class="n">1</div><h4>Anfrage senden</h4><p>Wunschtermin und Vorhaben über das Formular – wir prüfen die Verfügbarkeit.</p></div>
+        <div class="step"><div class="n">2</div><h4>Tech-Briefing (15 Min.)</h4><p>Kostenlos: Wir klären Umgebungen, Kamera und Workflow. Auf Wunsch Testslot am Vortag.</p></div>
+        <div class="step"><div class="n">3</div><h4>Drehtag</h4><p>Einweisung, los geht's. Antwort auf jede Anfrage innerhalb von 24 Stunden.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage" class="tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Verfügbarkeit anfragen</h2>
+        <p>Sagen Sie uns Datum, Projektart und ob Sie Crew benötigen – wir melden uns innerhalb von 24 Stunden. Oder kommen Sie zu einem unserer Open-Studio-Termine vorbei.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href="mailto:as@creative-cinema.net?subject=Studio-Anfrage%20LED-Studio%20mieten">Verfügbarkeit anfragen <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Drehtag-Rechner</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="section-h">Gut zu wissen.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Base>

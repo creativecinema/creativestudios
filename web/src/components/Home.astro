@@ -1,0 +1,275 @@
+---
+import type { HomeContent } from '../data/home';
+interface Props { lang: 'de' | 'en'; t: HomeContent }
+const { lang, t } = Astro.props;
+const homeHref = lang === 'de' ? '/' : '/en/';
+const logo = 'https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg';
+---
+<a class="skip-link" href="#produktion">{t.skip}</a>
+
+<nav class="site" aria-label="Navigation">
+  <div class="wrap nav-in">
+    <a class="brand" href={homeHref} aria-label="CreativeCinema">
+      <img src={logo} alt="CreativeCinema" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
+      <span class="word" style="display:none">Creative<em>Cinema</em></span>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <div class="nav-links" id="navlinks">
+      {t.nav.links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a class="btn btn-primary magnetic" href="#kontakt">{t.nav.cta}</a>
+      <span class="lang" aria-label="Language">
+        <a href="/" aria-current={lang === 'de' ? 'true' : undefined}>DE</a>
+        <a href="/en/" aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      </span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="slate">
+      <span class="rec"><span class="rec-dot" aria-hidden="true"></span>REC</span>
+      <span class="tc" id="timecode">00:00:00:00</span>
+      <span class="tc">{t.hero.stage}</span>
+      <span class="tc claim">{t.hero.claim}</span>
+    </div>
+    <div class="wall">
+      {['bd-desert', 'bd-skyline', 'bd-halle', 'bd-alpen'].map((bd, i) => (
+        <div class={`backdrop ${bd}${i === 0 ? ' active' : ''}`} data-bd={bd.replace('bd-', '')}></div>
+      ))}
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <span class="track bl" aria-hidden="true"></span><span class="track br" aria-hidden="true"></span>
+      <div class="glow" aria-hidden="true"></div>
+      <div class="sweep" aria-hidden="true"></div>
+      <div class="wall-in">
+        <span class="hero-kicker">{t.hero.kicker}</span>
+        <h1>{t.hero.h1}<span class="hl">{t.hero.h1hl}</span>{t.hero.h1rest}</h1>
+        <p class="sub">{t.hero.sub}</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href={t.hero.ctaPrimaryHref}>{t.hero.ctaPrimary} <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href={t.hero.ctaGhostHref}>{t.hero.ctaGhost}</a>
+          <button type="button" class="btn btn-ghost" data-lightbox aria-haspopup="dialog">▶&nbsp; {t.hero.showreel}</button>
+        </div>
+      </div>
+      <div class="loc-chips" role="group" aria-label="Backdrop">
+        <span class="mono"><span class="rec-dot" aria-hidden="true" style="background:var(--led)"></span> {t.hero.chipsLabel}</span>
+        {t.hero.chips.map((c, i) => (
+          <button class={`chip${i === 0 ? ' active' : ''}`} aria-pressed={i === 0 ? 'true' : 'false'} data-target={c.target}><span class="dot" aria-hidden="true"></span>{c.label}</button>
+        ))}
+      </div>
+      <div class="scroll-hint" aria-hidden="true">{t.hero.scrollHint}<span></span></div>
+    </div>
+  </div>
+</header>
+
+<!-- PROOF -->
+<div class="proof">
+  <div class="wrap proof-grid">
+    {t.proof.map((p) => (
+      <div class="proof-item">
+        <div class="proof-num" data-count={p.num}>0{p.suf ? <span class="suf">{p.suf}</span> : null}</div>
+        <p>{p.text}</p>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- SCROLLYTELLING -->
+<section class="scenes" aria-label={t.scenesKicker}>
+  <div class="scenes-stage">
+    {t.scenes.map((s, i) => (
+      <div class={`scene ${s.bd}${i === 0 ? ' active' : ''}`} data-num={s.num} data-name={s.name} data-desc={s.desc}></div>
+    ))}
+    <div class="scenes-copy">
+      <span class="hero-kicker">{t.scenesKicker}</span>
+      <div class="scene-index" data-scene-index>{t.scenes[0].num}</div>
+      <strong class="scene-now" data-scene-now>{t.scenes[0].name}</strong>
+      <p class="scene-desc" data-scene-desc>{t.scenes[0].desc}</p>
+    </div>
+    <div class="scene-rail" aria-label="Scenes">
+      {t.scenesRail.map((label, i) => (
+        <button aria-current={i === 0 ? 'true' : 'false'}><span>{label}</span><span class="tick" aria-hidden="true"></span></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SHOWREEL -->
+<section class="showreel air">
+  <div class="wrap">
+    <span class="eyebrow">{t.showreel.eyebrow}</span>
+    <h2 class="section-h">{t.showreel.h2}</h2>
+    <p class="lede">{t.showreel.lede}</p>
+    <div class="media reveal">
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <span class="track bl" aria-hidden="true"></span><span class="track br" aria-hidden="true"></span>
+      <div class="play-center">
+        <button class="play-btn" data-lightbox aria-label={t.showreel.play} aria-haspopup="dialog"></button>
+        <span class="label">{t.showreel.caption}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ZWEI WEGE -->
+<section class="air">
+  <div class="wrap">
+    <span class="eyebrow">{t.twoWays.eyebrow}</span>
+    <h2 class="section-h">{t.twoWays.h2}</h2>
+    <div class="paths">
+      {t.twoWays.cards.map((c, i) => (
+        <a class={`path reveal${i === 1 ? ' d1' : ''}`} href={c.href}>
+          <span class="mono">{c.eyebrow}</span>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <span class="path-link">{c.link} <span class="arrow">→</span></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section class="panel-bg air" id="studio">
+  <div class="wrap">
+    <span class="eyebrow">{t.studio.eyebrow}</span>
+    <h2 class="section-h">{t.studio.h2}</h2>
+    <p class="lede">{t.studio.lede}</p>
+    <div class="media reveal" style="margin-bottom:36px">
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <div class="media-ph"><span class="mono">Studio-Foto · 16:9</span><p class="ph-note">Echtes Foto der LED-Stage einsetzen.</p></div>
+    </div>
+    <div class="split reveal">
+      <div>
+        <table class="spec-table">
+          {t.studio.specs.map(([k, v]) => (<tr><td>{k}</td><td>{v}</td></tr>))}
+        </table>
+      </div>
+      <div class="price-cards">
+        {t.studio.prices.map((p) => (
+          <div class={`price${p.featured ? ' featured' : ''}`}><div><h4>{p.name}</h4><small>{p.desc}</small></div><span class="tag">{p.tag}</span></div>
+        ))}
+        <a class="btn btn-primary magnetic" href={t.studio.ctaHref}>{t.studio.cta} <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIRTUAL PRODUCTION -->
+<section class="air" id="produktion">
+  <div class="wrap">
+    <span class="eyebrow">{t.vp.eyebrow}</span>
+    <h2 class="section-h">{t.vp.h2}</h2>
+    <p class="lede">{t.vp.lede}</p>
+    <div class="usecases">
+      {t.vp.uses.map((u, i) => (
+        <div class={`uc reveal${i % 3 === 1 ? ' d1' : i % 3 === 2 ? ' d2' : ''}`}><span class="mono">{u.tag}</span><h4>{u.title}</h4><p>{u.desc}</p></div>
+      ))}
+    </div>
+    <div class="callout reveal" style="margin-top:56px">
+      <span class="mono accent">{t.vp.callout.kicker}</span>
+      <h3>{t.vp.callout.title}</h3>
+      <p>{t.vp.callout.text}</p>
+    </div>
+  </div>
+</section>
+
+<!-- VORHER / NACHHER -->
+<section class="panel-bg air" id="incamera">
+  <div class="wrap">
+    <span class="eyebrow">{t.incamera.eyebrow}</span>
+    <h2 class="section-h">{t.incamera.h2}</h2>
+    <p class="lede">{t.incamera.lede}</p>
+    <div class="ba reveal">
+      <div class="ba-layer ba-before" aria-hidden="true"></div>
+      <div class="ba-layer ba-after" aria-hidden="true"></div>
+      <div class="ba-figure" aria-hidden="true"></div>
+      <span class="ba-tag l">{t.incamera.before}</span>
+      <span class="ba-tag r">{t.incamera.after}</span>
+      <input type="range" min="0" max="100" value="50" aria-label={`${t.incamera.before} / ${t.incamera.after}`} />
+      <div class="ba-divider" aria-hidden="true"></div>
+      <div class="ba-handle" aria-hidden="true">⇆</div>
+    </div>
+  </div>
+</section>
+
+<!-- VERGLEICH -->
+<section id="vergleich" class="tight">
+  <div class="wrap">
+    <span class="eyebrow">{t.compare.eyebrow}</span>
+    <h2 class="section-h">{t.compare.h2}</h2>
+    <div class="compare reveal">
+      {[t.compare.left, t.compare.right].map((col, idx) => (
+        <div class={`cmp${idx === 1 ? ' win' : ''}`}>
+          <h4>{col.title}</h4>
+          <p class="tagline">{col.tagline}</p>
+          <ul>{col.items.map(([a, b]) => (<li>{a} <b>{b}</b></li>))}</ul>
+        </div>
+      ))}
+    </div>
+    {t.compare.cta ? (
+      <div class="btn-row" style="margin-top:28px"><a class="btn btn-primary magnetic" href={t.compare.ctaHref}>{t.compare.cta} <span class="arrow">→</span></a></div>
+    ) : null}
+  </div>
+</section>
+
+<!-- REFERENZEN -->
+<section id="projekte" class="tight">
+  <div class="wrap">
+    <span class="eyebrow">{t.projects.eyebrow}</span>
+    <h2 class="section-h">{t.projects.h2}</h2>
+    <p class="lede">{t.projects.lede}</p>
+    <div class="case-grid reveal">
+      {t.projects.cases.map((c) => (
+        <div class="media case">
+          <div class="media-ph"><span class="mono">Case-Foto</span></div>
+          <div class="case-cap"><span class="client">{c.client}</span><span class="metric">{c.metric}</span></div>
+        </div>
+      ))}
+    </div>
+  </div>
+  <div class="marquee reveal" aria-label="Clients">
+    <div class="marquee-track">
+      {[...t.projects.logos, ...t.projects.logos].map((l) => (<span>{l}</span>))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq tight">
+  <div class="wrap-narrow">
+    <span class="eyebrow">{t.faq.eyebrow}</span>
+    <h2 class="section-h">{t.faq.h2}</h2>
+    <div class="reveal">
+      {t.faq.items.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="wrap contact-in">
+    <div>
+      <span class="eyebrow">{t.contact.eyebrow}</span>
+      <h2>{t.contact.h2}</h2>
+      <p class="lede">{t.contact.lede}</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="mailto:as@creative-cinema.net">{t.contact.ctaPrimary} <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#top">{t.contact.ctaGhost}</a>
+      </div>
+    </div>
+    <div class="nap">
+      <strong>CREATIVECINEMA GMBH</strong><br />
+      {t.contact.nap.map((line) => (<>{line}<br /></>))}
+      <br /><span class="accent">{t.contact.claim}</span>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap foot-in">
+    <span>{t.footer.copy}</span>
+    <span>{t.footer.links.map((l, i) => (<>{i > 0 ? ' · ' : ''}<a href={l.href}>{l.label}</a></>))}</span>
+  </div>
+</footer>

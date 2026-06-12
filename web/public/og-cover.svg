@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" font-family="'Poppins','Segoe UI',sans-serif">
+  <!-- Hinweis: Platzhalter-OG. Für Social-Sharing ideal durch ein 1200×630-PNG (echtes Studio-Bild) ersetzen. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17191E"/>
+      <stop offset="0.55" stop-color="#101114"/>
+      <stop offset="1" stop-color="#0B0C0E"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.1" r="0.7">
+      <stop offset="0" stop-color="#C23336" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#C23336" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- LED-Pixelraster -->
+  <g fill="#ffffff" opacity="0.03">
+    <rect x="0" y="0" width="1200" height="630"/>
+  </g>
+  <rect x="80" y="92" width="54" height="3" fill="#D9494C"/>
+  <text x="80" y="86" fill="#D9494C" font-size="22" font-weight="600" letter-spacing="6">FILMPRODUKTION · XR-STUDIO · ERLANGEN</text>
+  <text x="78" y="250" fill="#F2EFE8" font-size="86" font-weight="800" letter-spacing="-2">Creative<tspan fill="#C23336">Cinema</tspan></text>
+  <text x="80" y="330" fill="#F2EFE8" font-size="40" font-weight="700">Hollywood-Technologie, eine Stunde</text>
+  <text x="80" y="384" fill="#F2EFE8" font-size="40" font-weight="700">von Ihrem Werkstor entfernt.</text>
+  <text x="80" y="470" fill="#9CA0A8" font-size="26" font-weight="400">50 m² LED-Wand · Kameratracking · 5 Locations an einem Drehtag</text>
+  <text x="80" y="560" fill="#D9494C" font-size="22" font-weight="600" letter-spacing="4">DIREKT. INNOVATIV. PRODUKTIONSSICHER.</text>
+  <rect x="0" y="624" width="1200" height="6" fill="#C23336"/>
+</svg>

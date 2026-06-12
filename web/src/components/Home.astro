@@ -3,7 +3,7 @@ import type { HomeContent } from '../data/home';
 interface Props { lang: 'de' | 'en'; t: HomeContent }
 const { lang, t } = Astro.props;
 const homeHref = lang === 'de' ? '/' : '/en/';
-const logo = 'https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg';
+const logo = '/assets/cc-logo-white.svg';
 ---
 <a class="skip-link" href="#produktion">{t.skip}</a>
 

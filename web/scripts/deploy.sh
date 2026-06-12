@@ -6,7 +6,7 @@ cd "$(dirname "$0")/.."
 
 # .env.deploy laden, falls vorhanden
 if [ -f .env.deploy ]; then set -a; . ./.env.deploy; set +a; fi
-: "${ONECOM_SFTP_HOST:?Bitte ONECOM_SFTP_HOST setzen (z. B. ssh.creative-cinema.de)}"
+: "${ONECOM_SFTP_HOST:?Bitte ONECOM_SFTP_HOST setzen (z. B. ssh.creative-studios.tv)}"
 : "${ONECOM_SFTP_USER:?Bitte ONECOM_SFTP_USER setzen}"
 : "${ONECOM_SFTP_PASSWORD:?Bitte ONECOM_SFTP_PASSWORD setzen}"
 : "${ONECOM_REMOTE_PATH:?Bitte ONECOM_REMOTE_PATH setzen (Webroot, z. B. / oder /public_html)}"
@@ -23,4 +23,4 @@ lftp -c "
   open -u '${ONECOM_SFTP_USER}','${ONECOM_SFTP_PASSWORD}' sftp://${ONECOM_SFTP_HOST};
   mirror -R --delete --parallel=4 --verbose ./dist '${ONECOM_REMOTE_PATH}';
 "
-echo "✓ Deploy fertig: https://creative-cinema.de/"
+echo "✓ Deploy fertig: https://creative-studios.tv/"

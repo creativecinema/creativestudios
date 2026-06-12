@@ -2,7 +2,7 @@
 // Navigation für Unterseiten (Routen-basiert). Home ist content-getrieben (Home.astro).
 interface Props { active?: string }
 const { active = '' } = Astro.props;
-const logo = 'https://creative-cinema.de/wp-content/uploads/2024/03/CC_Logo_White-1.svg';
+const logo = '/assets/cc-logo-white.svg';
 const links = [
   { key: 'studio', label: 'Studio mieten', href: '/studio/led-studio-mieten/' },
   { key: 'vp', label: 'Virtual Production', href: '/xr-studio/virtual-production/' },

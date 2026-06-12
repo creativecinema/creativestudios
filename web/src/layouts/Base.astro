@@ -15,7 +15,7 @@ const {
   ogImage,
 } = Astro.props;
 
-const base = 'https://creative-cinema.de/';
+const base = 'https://creative-studios.tv/';
 const canonical = lang === 'de' ? base + path : base + 'en/' + path;
 const altDe = base + path;
 const altEn = base + 'en/' + path;
@@ -41,7 +41,7 @@ const og = ogImage || base + 'og-cover.svg';
   <meta property="og:image" content={og} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#101114" />
-  <link rel="icon" href="https://creative-cinema.de/wp-content/uploads/2023/01/CC_Logo_Rocket.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/cc-logo-rocket.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />

@@ -11,7 +11,7 @@ Ablauf: **bauen (lokal oder per GitHub Actions) → `dist/` per SFTP zu one.com 
 
 ## Was du aus deinem one.com-Konto brauchst
 Im one.com Control Panel unter **„SFTP/SSH"**:
-- **Host** (z. B. `ssh.creative-cinema.de` oder ein von one.com genannter Server)
+- **Host** (z. B. `ssh.creative-studios.tv` oder ein von one.com genannter Server)
 - **Benutzername** und **Passwort** (SFTP)
 - **Webroot-Pfad** – wohin die Domain zeigt (oft `/`, `/public_html` oder `/www`)
 - SSL: one.com stellt **kostenloses Let's-Encrypt-Zertifikat** bereit → in der Domain-Verwaltung aktivieren.
@@ -30,7 +30,7 @@ Workflow liegt unter `.github/workflows/deploy.yml`. Auslöser: Push auf `main`,
 | Secret | Wert |
 |---|---|
 | `STORYBLOK_TOKEN` | Space-**Preview**-Token (lesend) – derselbe wie in `web/.env` |
-| `ONECOM_SFTP_HOST` | z. B. `ssh.creative-cinema.de` |
+| `ONECOM_SFTP_HOST` | z. B. `ssh.creative-studios.tv` |
 | `ONECOM_SFTP_USER` | SFTP-Benutzer |
 | `ONECOM_SFTP_PASSWORD` | SFTP-Passwort |
 | `ONECOM_REMOTE_PATH` | Webroot, z. B. `/` |
@@ -48,11 +48,11 @@ Falls dein Storyblok-Plan keine Custom-Header erlaubt: kleinen Relay (Cloudflare
 ---
 
 ## Domain / DNS-Umstellung (Achtung: Live-WordPress läuft noch)
-1. **Zuerst testen:** `ONECOM_REMOTE_PATH` auf einen Unterordner (z. B. `/preview`) richten und `https://creative-cinema.de/preview/` prüfen – ODER eine Test-Subdomain in one.com anlegen.
+1. **Zuerst testen:** `ONECOM_REMOTE_PATH` auf einen Unterordner (z. B. `/preview`) richten und `https://creative-studios.tv/preview/` prüfen – ODER eine Test-Subdomain in one.com anlegen.
 2. Passt alles, Webroot auf den echten Pfad stellen und deployen (überschreibt die alte WordPress-Seite – vorher sichern!).
 3. **301-Redirects** alter WordPress-URLs auf die neuen Routen ggf. in `web/public/.htaccess` ergänzen.
-4. In **Storyblok → Settings → Visual Editor** die Vorschau-Domain von `localhost` auf `https://creative-cinema.de/` umstellen.
-5. **Google Search Console:** neue `https://creative-cinema.de/sitemap-index.xml` einreichen.
+4. In **Storyblok → Settings → Visual Editor** die Vorschau-Domain von `localhost` auf `https://creative-studios.tv/` umstellen.
+5. **Google Search Console:** neue `https://creative-studios.tv/sitemap-index.xml` einreichen.
 
 ---
 

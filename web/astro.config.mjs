@@ -10,7 +10,7 @@ const env = loadEnv(process.env.NODE_ENV || 'production', process.cwd(), '');
 // Zweisprachig (DE Standard, EN unter /en/). Inhalte aus Storyblok (Visual Editor),
 // mit Fallback auf src/data. `site` -> Canonicals + automatische sitemap.
 export default defineConfig({
-  site: 'https://creative-cinema.de',
+  site: 'https://creative-studios.tv',
   integrations: [
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,

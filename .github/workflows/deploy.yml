@@ -51,3 +51,5 @@ jobs:
             open -u '$USER','$PASS' sftp://$HOST;
             mirror -R --parallel=4 --verbose ./dist '$REMOTE';
           "
+
+# Re-Deploy nach SFTP-Passwort-Reset

@@ -38,18 +38,30 @@ jobs:
 
       - name: Upload nach one.com (SFTP via lftp)
         env:
-          HOST: ${{ secrets.ONECOM_SFTP_HOST }}     # z. B. ssh.creative-cinema.de
-          USER: ${{ secrets.ONECOM_SFTP_USER }}
-          PASS: ${{ secrets.ONECOM_SFTP_PASSWORD }}
-          # Webroot auf one.com – ERST auf einem Test-Unterordner prüfen, dann auf den echten Webroot zeigen!
-          REMOTE: /files  # Docroot von creative-studios.tv (SFTP-User auf Domain beschränkt)
+          HOST: ${{ secrets.ONECOM_SFTP_HOST }}     # ssh.creative-studios.tv
+          USER: ${{ secrets.ONECOM_SFTP_USER }}     # creative-studios.tv
+          PASS: ${{ secrets.ONECOM_SFTP_PASSWORD }} # SSH/SFTP-Passwort (NICHT das FTP-Passwort!)
+          REMOTE: "."   # Webroot = SFTP-Login-Verzeichnis (per Marker-Test bestätigt)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          # User + Passwort URL-encodieren -> robust gegen Sonderzeichen im Passwort
+          ENC_USER=$(printf '%s' "$USER" | python3 -c "import sys,urllib.parse;print(urllib.parse.quote(sys.stdin.read(),safe=''))")
+          ENC_PASS=$(printf '%s' "$PASS" | python3 -c "import sys,urllib.parse;print(urllib.parse.quote(sys.stdin.read(),safe=''))")
+          echo "::add-mask::$ENC_PASS"   # encodiertes PW in den Logs maskieren
           lftp -c "
             set sftp:auto-confirm yes;
             set net:max-retries 2; set net:timeout 20;
-            open -u '$USER','$PASS' sftp://$HOST;
-            mirror -R --parallel=4 --verbose ./dist '$REMOTE';
+            open sftp://$ENC_USER:$ENC_PASS@$HOST;
+            mirror -R --no-perms --parallel=4 ./dist '$REMOTE';
           "
 
-# Re-Deploy nach SFTP-Passwort-Reset
+      - name: Live-Check (Deploy verifizieren)
+        run: |
+          ok=1
+          for path in "/" "/en/" "/studio/led-studio-mieten/" "/xr-studio/virtual-production/" "/wissen/kosten-drehtag/"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "https://creative-studios.tv$path")
+            echo "  $path -> HTTP $code"
+            [ "$code" = "200" ] || ok=0
+          done
+          [ "$ok" = "1" ] || { echo "::error::Mindestens eine Seite ist nicht HTTP 200"; exit 1; }
+          echo "✓ Alle Seiten live (HTTP 200)"

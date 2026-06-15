@@ -42,7 +42,7 @@ jobs:
           USER: ${{ secrets.ONECOM_SFTP_USER }}
           PASS: ${{ secrets.ONECOM_SFTP_PASSWORD }}
           # Webroot auf one.com – ERST auf einem Test-Unterordner prüfen, dann auf den echten Webroot zeigen!
-          REMOTE: ${{ secrets.ONECOM_REMOTE_PATH }}  # z. B. /  oder  /public_html  oder  /www
+          REMOTE: /files  # Docroot von creative-studios.tv (SFTP-User auf Domain beschränkt)
         run: |
           sudo apt-get update -qq && sudo apt-get install -y -qq lftp
           lftp -c "

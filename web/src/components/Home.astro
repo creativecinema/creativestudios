@@ -1,5 +1,6 @@
 ---
 import type { HomeContent } from '../data/home';
+import ContactForm from './ContactForm.astro';
 interface Props { lang: 'de' | 'en'; t: HomeContent }
 const { lang, t } = Astro.props;
 const homeHref = lang === 'de' ? '/' : '/en/';
@@ -254,10 +255,7 @@ const logo = '/assets/cc-logo-white.svg';
       <span class="eyebrow">{t.contact.eyebrow}</span>
       <h2>{t.contact.h2}</h2>
       <p class="lede">{t.contact.lede}</p>
-      <div class="btn-row">
-        <a class="btn btn-primary magnetic" href="mailto:as@creative-cinema.net">{t.contact.ctaPrimary} <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="#top">{t.contact.ctaGhost}</a>
-      </div>
+      <ContactForm />
     </div>
     <div class="nap">
       <strong>CREATIVECINEMA GMBH</strong><br />
@@ -270,6 +268,6 @@ const logo = '/assets/cc-logo-white.svg';
 <footer class="site">
   <div class="wrap foot-in">
     <span>{t.footer.copy}</span>
-    <span>{t.footer.links.map((l, i) => (<>{i > 0 ? ' · ' : ''}<a href={l.href}>{l.label}</a></>))}</span>
+    <span>{t.footer.links.map((l, i) => (<>{i > 0 ? ' · ' : ''}<a href={l.href}>{l.label}</a></>))} · <a href="#" onclick="event.preventDefault();window.openCookieSettings&&window.openCookieSettings()">{lang === 'de' ? 'Cookie-Einstellungen' : 'Cookie settings'}</a></span>
   </div>
 </footer>

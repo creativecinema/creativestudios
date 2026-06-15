@@ -654,3 +654,10 @@ nav.site.scrolled{background:var(--glass);backdrop-filter:blur(18px) saturate(1.
   border:1px solid var(--line);background:rgba(8,9,11,.6);color:var(--bone);font-size:1.3rem;cursor:pointer;line-height:1}
 .lightbox-close:hover{background:var(--ci-rot);border-color:var(--ci-rot)}
 .lightbox-close:focus-visible{outline:2px solid var(--led);outline-offset:3px}
+
+/* Rechtstexte (Impressum / Datenschutz) */
+.legal{padding:48px 0 72px}
+.legal-foot{font-size:.85rem;border-top:1px solid var(--line);padding-top:20px;margin-top:36px}
+.legal-back{margin-top:40px;font-size:.9rem}
+.legal-back a{color:var(--led)}
+.legal .prose .btn-ghost{margin-top:6px}

@@ -1,0 +1,83 @@
+---
+// Kontaktformular -> /kontakt.php (Mail an info@creative-cinema.net).
+// Spamschutz ohne externen Dienst: Honeypot-Feld + Zeitfalle + Pflicht-Häkchen Datenschutz.
+---
+<form class="cform" id="cform" method="post" action="/kontakt.php" novalidate>
+  <div class="cform-status" id="cform-status" role="status" aria-live="polite" hidden></div>
+
+  <div class="cform-grid">
+    <label class="cf-field"><span class="cf-lab">Name <em>*</em></span><input type="text" name="name" required autocomplete="name" /></label>
+    <label class="cf-field"><span class="cf-lab">E-Mail <em>*</em></span><input type="email" name="email" required autocomplete="email" /></label>
+    <label class="cf-field"><span class="cf-lab">Telefon</span><input type="tel" name="phone" autocomplete="tel" /></label>
+    <label class="cf-field"><span class="cf-lab">Wunschtermin / Betreff</span><input type="text" name="subject" /></label>
+  </div>
+
+  <label class="cf-field"><span class="cf-lab">Ihre Nachricht <em>*</em></span><textarea name="message" rows="5" required></textarea></label>
+
+  <label class="cf-check">
+    <input type="checkbox" name="privacy" required />
+    <span>Ich habe die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. <em>*</em></span>
+  </label>
+
+  <!-- Spamschutz: Honeypot (bitte NICHT ausfüllen) + Zeitstempel -->
+  <div class="cf-hp" aria-hidden="true"><label>Bitte frei lassen<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <input type="hidden" name="t" value="" />
+
+  <div class="cf-actions">
+    <button type="submit" class="btn btn-primary magnetic">Anfrage senden <span class="arrow">→</span></button>
+    <span class="cf-note">* Pflichtfelder · Antwort in 24&nbsp;Stunden</span>
+  </div>
+</form>
+
+<script is:inline>
+(function () {
+  var f = document.getElementById('cform'); if (!f) return;
+  var status = document.getElementById('cform-status');
+  var tfield = f.querySelector('input[name=t]'); if (tfield) tfield.value = String(Date.now());
+  function show(ok, msg) { status.hidden = false; status.textContent = msg; status.className = 'cform-status ' + (ok ? 'ok' : 'err'); status.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+  try {
+    var p = new URLSearchParams(location.search);
+    if (p.get('sent') === 'ok') show(true, 'Danke! Wir melden uns innerhalb von 24 Stunden.');
+    else if (p.get('sent') === 'err') show(false, 'Bitte prüfen Sie Ihre Eingaben – oder schreiben Sie an info@creative-cinema.net.');
+  } catch (e) {}
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!f.checkValidity()) { f.reportValidity(); return; }
+    var btn = f.querySelector('button[type=submit]'); btn.disabled = true;
+    fetch('/kontakt.php', { method: 'POST', headers: { 'X-Requested-With': 'fetch' }, body: new FormData(f) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        show(!!d.ok, d.msg || (d.ok ? 'Danke!' : 'Senden fehlgeschlagen.'));
+        if (d.ok) { f.reset(); }
+        btn.disabled = false; if (tfield) tfield.value = String(Date.now());
+      })
+      .catch(function () { show(false, 'Senden fehlgeschlagen. Bitte schreiben Sie an info@creative-cinema.net.'); btn.disabled = false; });
+  });
+})();
+</script>
+
+<style>
+  .cform { margin-top: 8px; }
+  .cform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cf-field { display: block; margin-bottom: 16px; }
+  .cf-lab { display: block; font-family: var(--font-body); font-weight: 600; font-size: .9rem; color: var(--bone); margin-bottom: 7px; }
+  .cf-lab em { color: var(--led); font-style: normal; }
+  .cform input[type=text], .cform input[type=email], .cform input[type=tel], .cform textarea {
+    width: 100%; background: var(--panel-2, #1D2026); color: var(--bone, #F2EFE8);
+    border: 1px solid var(--line, #2A2D34); border-radius: var(--radius, 14px);
+    padding: 12px 14px; font: inherit; font-size: .98rem; transition: border-color .2s, box-shadow .2s;
+  }
+  .cform textarea { resize: vertical; min-height: 120px; }
+  .cform input:focus, .cform textarea:focus { outline: none; border-color: var(--ci-rot, #C23336); box-shadow: 0 0 0 3px rgba(194,51,54,.18); }
+  .cf-check { display: flex; gap: 11px; align-items: flex-start; margin: 6px 0 22px; color: var(--muted, #9CA0A8); font-size: .88rem; line-height: 1.5; cursor: pointer; }
+  .cf-check input { margin-top: 3px; width: 17px; height: 17px; flex: none; accent-color: var(--ci-rot, #C23336); }
+  .cf-check a { color: var(--led, #D9494C); }
+  .cf-check em { color: var(--led); font-style: normal; }
+  .cf-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .cf-note { color: var(--muted); font-size: .82rem; }
+  .cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .cform-status { border-radius: var(--radius, 14px); padding: 13px 16px; margin-bottom: 18px; font-size: .92rem; border: 1px solid var(--line); }
+  .cform-status.ok { background: rgba(60,160,90,.12); border-color: rgba(60,160,90,.5); color: #d7f5e1; }
+  .cform-status.err { background: rgba(194,51,54,.12); border-color: rgba(194,51,54,.5); color: #f7d7d8; }
+  @media (max-width: 560px) { .cform-grid { grid-template-columns: 1fr; } }
+</style>

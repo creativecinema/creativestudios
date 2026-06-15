@@ -1,0 +1,157 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+---
+<Base
+  lang="de"
+  title="Datenschutzerklärung | CreativeCinema GmbH"
+  description="Datenschutzerklärung der CreativeCinema GmbH – Informationen zur Verarbeitung personenbezogener Daten nach DSGVO."
+  path="datenschutz/"
+  hasEN={false}
+>
+  <SiteNav />
+
+  <main class="legal" id="produktion">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Rechtliches</span>
+      <h1 class="section-h">Datenschutzerklärung</h1>
+
+      <div class="prose">
+        <p>
+          Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Nachfolgend informieren wir Sie gemäß
+          Art.&nbsp;13 und 14 der Datenschutz-Grundverordnung (DSGVO) darüber, welche Daten wir beim Besuch
+          dieser Website verarbeiten und zu welchem Zweck.
+        </p>
+
+        <h2>1. Verantwortlicher</h2>
+        <p>
+          Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
+          <strong>CreativeCinema GmbH</strong><br />
+          Gundstraße 13, 91056 Erlangen<br />
+          Vertreten durch: Andreas Schulz<br />
+          E-Mail: <a href="mailto:info@creative-cinema.net">info@creative-cinema.net</a>
+        </p>
+
+        <h2>2. Datenschutzbeauftragter</h2>
+        <p>Andreas Schulz · <a href="mailto:info@creative-cinema.net">info@creative-cinema.net</a></p>
+
+        <h2>3. Hosting</h2>
+        <p>
+          Diese Website wird bei einem externen Dienstleister gehostet (<strong>one.com</strong>, one.com Group AB).
+          Die personenbezogenen Daten, die beim Besuch der Website erfasst werden, werden auf den Servern des
+          Hosters innerhalb der Europäischen Union verarbeitet. Mit dem Hoster besteht ein Vertrag über
+          Auftragsverarbeitung gemäß Art.&nbsp;28 DSGVO. Rechtsgrundlage ist unser berechtigtes Interesse an
+          einer sicheren und effizienten Bereitstellung unseres Angebots (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO).
+        </p>
+
+        <h3>Server-Logfiles</h3>
+        <p>
+          Beim Aufruf der Website werden automatisch Informationen erfasst, die Ihr Browser übermittelt, und in
+          sogenannten Server-Logfiles gespeichert. Dies sind: Browsertyp und -version, verwendetes Betriebssystem,
+          Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und die IP-Adresse. Eine
+          Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Verarbeitung erfolgt
+          auf Grundlage von Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO zur technisch fehlerfreien Darstellung und zur
+          Sicherheit unserer Systeme. Die Logfiles werden nur so lange gespeichert, wie es für diese Zwecke
+          erforderlich ist, und anschließend gelöscht.
+        </p>
+
+        <h2>4. SSL-/TLS-Verschlüsselung</h2>
+        <p>
+          Diese Seite nutzt aus Sicherheitsgründen eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung
+          erkennen Sie an „https://" in der Adresszeile Ihres Browsers. Dadurch können die Daten, die Sie an uns
+          übermitteln, nicht von Dritten mitgelesen werden.
+        </p>
+
+        <h2 id="cookies">5. Cookies &amp; Einwilligung</h2>
+        <p>
+          Wir verwenden auf dieser Website ausschließlich <strong>technisch notwendige Cookies</strong> bzw.
+          lokalen Speicher, die für den Betrieb der Seite erforderlich sind (z.&nbsp;B. zum Speichern Ihrer
+          Cookie-Auswahl). Hierfür ist nach §&nbsp;25 Abs.&nbsp;2 TDDDG keine Einwilligung erforderlich; die
+          Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO.
+        </p>
+        <p>
+          Ein Tracking, eine Analyse Ihres Nutzungsverhaltens oder Marketing-Cookies finden derzeit
+          <strong>nicht</strong> statt. Sollten zukünftig optionale Dienste (z.&nbsp;B. Reichweitenmessung)
+          eingesetzt werden, geschieht dies erst nach Ihrer ausdrücklichen Einwilligung über unseren
+          Consent-Banner (Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO, §&nbsp;25 Abs.&nbsp;1 TDDDG). Ihre Einwilligung
+          ist freiwillig und jederzeit mit Wirkung für die Zukunft widerrufbar.
+        </p>
+        <p>
+          <button type="button" class="btn btn-ghost" onclick="window.openCookieSettings && window.openCookieSettings()">Cookie-Einstellungen ändern</button>
+        </p>
+
+        <h2>6. Schriftarten (lokal gehostet)</h2>
+        <p>
+          Zur einheitlichen Darstellung verwenden wir die Schriftarten „Poppins" und „Source Sans&nbsp;3". Diese
+          werden <strong>lokal von unserem Server</strong> ausgeliefert. Es besteht <strong>keine Verbindung zu
+          Servern von Google</strong> und es wird <strong>keine IP-Adresse an Dritte übermittelt</strong>.
+        </p>
+
+        <h2>7. Kontaktformular &amp; Kontakt per E-Mail</h2>
+        <p>
+          Wenn Sie uns über das Kontaktformular oder per E-Mail kontaktieren, verarbeiten wir die von Ihnen
+          angegebenen Daten (z.&nbsp;B. Name, E-Mail-Adresse, ggf. Telefonnummer, Betreff/Wunschtermin und den
+          Inhalt Ihrer Nachricht), um Ihre Anfrage zu bearbeiten. Pflichtangaben sind als solche gekennzeichnet;
+          alle weiteren Angaben sind freiwillig.
+        </p>
+        <p>
+          Rechtsgrundlage ist Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;b DSGVO, sofern Ihre Anfrage mit der Anbahnung oder
+          Durchführung eines Vertrags zusammenhängt; im Übrigen Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;f DSGVO (unser
+          berechtigtes Interesse an der Beantwortung von Anfragen) bzw. Art.&nbsp;6 Abs.&nbsp;1 lit.&nbsp;a DSGVO,
+          soweit Sie eingewilligt haben. Die Übermittlung erfolgt als E-Mail an unser Postfach
+          <a href="mailto:info@creative-cinema.net">info@creative-cinema.net</a> (über den E-Mail-Dienst unseres
+          Hosters one.com).
+        </p>
+        <p>
+          Zum Schutz vor automatisiertem Missbrauch (Spam) setzen wir technische Maßnahmen ein, die ohne externe
+          Dienste und ohne Tracking auskommen (verstecktes Honeypot-Feld sowie eine Zeitprüfung der Absendung).
+          Hierbei werden keine zusätzlichen personenbezogenen Daten an Dritte weitergegeben.
+        </p>
+        <p>
+          Wir speichern Ihre Anfrage, bis diese vollständig bearbeitet ist und kein Anlass zur weiteren
+          Aufbewahrung mehr besteht. Gesetzliche Aufbewahrungspflichten (z.&nbsp;B. handels- und steuerrechtliche
+          Fristen) bleiben unberührt.
+        </p>
+
+        <h2>8. Ihre Rechte</h2>
+        <p>Ihnen stehen gegenüber uns folgende Rechte hinsichtlich Ihrer personenbezogenen Daten zu:</p>
+        <ul>
+          <li>Recht auf Auskunft (Art.&nbsp;15 DSGVO)</li>
+          <li>Recht auf Berichtigung (Art.&nbsp;16 DSGVO)</li>
+          <li>Recht auf Löschung (Art.&nbsp;17 DSGVO)</li>
+          <li>Recht auf Einschränkung der Verarbeitung (Art.&nbsp;18 DSGVO)</li>
+          <li>Recht auf Datenübertragbarkeit (Art.&nbsp;20 DSGVO)</li>
+          <li>Widerspruchsrecht gegen die Verarbeitung (Art.&nbsp;21 DSGVO)</li>
+          <li>Recht auf Widerruf einer erteilten Einwilligung mit Wirkung für die Zukunft (Art.&nbsp;7 Abs.&nbsp;3 DSGVO)</li>
+        </ul>
+        <p>Zur Ausübung Ihrer Rechte genügt eine formlose Mitteilung an die oben genannten Kontaktdaten.</p>
+
+        <h2>9. Beschwerderecht bei der Aufsichtsbehörde</h2>
+        <p>
+          Unbeschadet anderer Rechtsbehelfe steht Ihnen ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde
+          zu. Die für uns zuständige Behörde ist das <strong>Bayerische Landesamt für Datenschutzaufsicht (BayLDA)</strong>,
+          Promenade 18, 91522 Ansbach.
+        </p>
+
+        <h2>10. Widerspruch gegen Werbe-E-Mails</h2>
+        <p>
+          Der Nutzung der im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht
+          ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Wir behalten
+          uns ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa
+          durch Spam-E-Mails, vor.
+        </p>
+
+        <h2>11. Aktualität dieser Erklärung</h2>
+        <p>
+          Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung unserer Website oder aufgrund
+          geänderter gesetzlicher bzw. behördlicher Vorgaben kann es notwendig werden, diese Erklärung anzupassen.
+        </p>
+      </div>
+
+      <p class="legal-back"><a href="/">← Zurück zur Startseite</a></p>
+    </div>
+  </main>
+
+  <SiteFooter />
+</Base>

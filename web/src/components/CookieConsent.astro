@@ -1,0 +1,96 @@
+---
+// Selbst gehosteter Cookie-Consent (DSGVO/§25 TDDDG):
+// - deny-by-default (optionale Kategorien standardmäßig AUS)
+// - granular, Einwilligung mit Zeitstempel in localStorage, jederzeit widerrufbar (window.openCookieSettings())
+// - blockt optionale Skripte bis zur Einwilligung: <script type="text/plain" data-consent="statistics" ...>
+---
+<div id="cc-banner" class="cc-banner" role="dialog" aria-modal="false" aria-label="Datenschutz-Einstellungen" hidden>
+  <div class="cc-inner">
+    <div class="cc-text">
+      <strong>Datenschutz-Einstellungen</strong>
+      <p>
+        Wir setzen nur <b>technisch notwendige</b> Cookies, die für den Betrieb der Seite erforderlich sind.
+        Optionale Cookies (z.&nbsp;B. Statistik) verwenden wir ausschließlich mit Ihrer Einwilligung.
+        Details in der <a href="/datenschutz/">Datenschutzerklärung</a>.
+      </p>
+      <div class="cc-cats" id="cc-cats" hidden>
+        <label class="cc-cat"><input type="checkbox" checked disabled /> <span><b>Notwendig</b> – für den Betrieb erforderlich (immer aktiv).</span></label>
+        <label class="cc-cat"><input type="checkbox" data-cat="statistics" /> <span><b>Statistik</b> – anonyme Reichweitenmessung (derzeit nicht im Einsatz).</span></label>
+        <label class="cc-cat"><input type="checkbox" data-cat="marketing" /> <span><b>Marketing / externe Medien</b> – z.&nbsp;B. eingebettete Videos (derzeit nicht im Einsatz).</span></label>
+      </div>
+    </div>
+    <div class="cc-actions">
+      <button type="button" class="btn btn-ghost" id="cc-necessary">Nur notwendige</button>
+      <button type="button" class="btn btn-ghost" id="cc-settings-toggle">Einstellungen</button>
+      <button type="button" class="btn btn-primary" id="cc-accept">Alle akzeptieren</button>
+      <button type="button" class="btn btn-primary" id="cc-save" hidden>Auswahl speichern</button>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+(function () {
+  var KEY = 'cc-consent-v1';
+  var banner = document.getElementById('cc-banner');
+  if (!banner) return;
+  var cats = document.getElementById('cc-cats');
+  var saveBtn = document.getElementById('cc-save');
+  function stored() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+  function activate(c) {
+    window.__ccConsent = c;
+    document.querySelectorAll('script[type="text/plain"][data-consent]').forEach(function (s) {
+      if (c[s.getAttribute('data-consent')]) {
+        var n = document.createElement('script');
+        for (var i = 0; i < s.attributes.length; i++) {
+          var a = s.attributes[i];
+          if (a.name !== 'type' && a.name !== 'data-consent') n.setAttribute(a.name, a.value);
+        }
+        if (s.src) n.src = s.src; else n.textContent = s.textContent;
+        s.parentNode.insertBefore(n, s);
+      }
+    });
+    document.dispatchEvent(new CustomEvent('cc:consent', { detail: c }));
+  }
+  function save(c) {
+    c.necessary = true;
+    c.ts = new Date().toISOString();
+    c.v = 1;
+    try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
+    banner.hidden = true;
+    activate(c);
+  }
+  document.getElementById('cc-accept').addEventListener('click', function () { save({ statistics: true, marketing: true }); });
+  document.getElementById('cc-necessary').addEventListener('click', function () { save({ statistics: false, marketing: false }); });
+  document.getElementById('cc-settings-toggle').addEventListener('click', function () {
+    cats.hidden = !cats.hidden; saveBtn.hidden = cats.hidden;
+  });
+  saveBtn.addEventListener('click', function () {
+    var c = {};
+    document.querySelectorAll('#cc-cats input[data-cat]').forEach(function (i) { c[i.getAttribute('data-cat')] = i.checked; });
+    save(c);
+  });
+  window.openCookieSettings = function () {
+    var c = stored() || {};
+    document.querySelectorAll('#cc-cats input[data-cat]').forEach(function (i) { i.checked = !!c[i.getAttribute('data-cat')]; });
+    cats.hidden = false; saveBtn.hidden = false; banner.hidden = false;
+  };
+  var c = stored();
+  if (c) activate(c); else banner.hidden = false;
+})();
+</script>
+
+<style>
+  [hidden] { display: none !important; }
+  .cc-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9999; background: var(--panel, #17191E); border-top: 1px solid var(--line, #2A2D34); box-shadow: 0 -20px 50px -20px rgba(0,0,0,.7); padding: 18px 0; }
+  .cc-inner { max-width: var(--max, 1180px); margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center; }
+  .cc-text strong { color: var(--bone, #F2EFE8); font-family: var(--font-head, sans-serif); font-weight: 700; display: block; margin-bottom: 6px; }
+  .cc-text p { color: var(--muted, #9CA0A8); font-size: .9rem; line-height: 1.6; margin: 0; max-width: 72ch; }
+  .cc-text a { color: var(--led, #D9494C); }
+  .cc-cats { margin-top: 14px; display: grid; gap: 10px; }
+  .cc-cat { display: flex; gap: 10px; align-items: flex-start; color: var(--muted, #9CA0A8); font-size: .85rem; line-height: 1.5; cursor: pointer; }
+  .cc-cat b { color: var(--bone, #F2EFE8); font-weight: 600; }
+  .cc-cat input { margin-top: 3px; accent-color: var(--ci-rot, #C23336); width: 16px; height: 16px; flex: none; }
+  .cc-actions { display: flex; flex-direction: column; gap: 10px; min-width: 210px; }
+  .cc-actions .btn { width: 100%; justify-content: center; text-align: center; padding: 11px 18px; }
+  @media (max-width: 820px) { .cc-inner { grid-template-columns: 1fr; } .cc-actions { flex-direction: row; flex-wrap: wrap; } .cc-actions .btn { flex: 1; min-width: 140px; } }
+</style>

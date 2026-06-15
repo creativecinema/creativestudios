@@ -7,8 +7,10 @@ web/.astro/
 web/.env
 web/.env.production
 web/.env.deploy
+web/.gh-pat
 **/.env
 **/.env.deploy
+**/.gh-pat
 
 # OS / Editor
 .DS_Store

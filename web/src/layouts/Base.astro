@@ -1,6 +1,7 @@
 ---
 // Basis-Layout: <head>, per-Seite SEO (Canonical, hreflang, JSON-LD, OpenGraph),
 // globale Chrome (Filmkorn, Letterbox-Intro, Scroll-Progress) und das Design-System.
+import CookieConsent from '../components/CookieConsent.astro';
 export interface Props {
   lang: 'de' | 'en';
   title: string;
@@ -42,9 +43,7 @@ const og = ogImage || base + 'og-cover.svg';
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#101114" />
   <link rel="icon" href="/assets/cc-logo-rocket.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/fonts.css" />
   <link rel="stylesheet" href="/styles/cc.css" />
   {jsonld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}
   <slot name="head" />
@@ -54,6 +53,7 @@ const og = ogImage || base + 'og-cover.svg';
   <div class="cinebars" aria-hidden="true"><i class="top"></i><i class="bot"></i></div>
   <div class="progress" aria-hidden="true"></div>
   <slot />
+  <CookieConsent />
   <script is:inline src="/scripts/cc.js"></script>
 </body>
 </html>

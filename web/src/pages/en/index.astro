@@ -16,6 +16,12 @@ try {
   console.warn('[Storyblok] Fallback auf home.ts (EN):', e?.message || e);
 }
 
+// Rechtliche Footer-Links immer auf die echten Seiten zeigen (unabhängig von Storyblok-Altdaten)
+for (const l of t.footer.links) {
+  if (/impressum|imprint/i.test(l.label)) l.href = '/impressum/';
+  if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
+}
+
 const jsonld = [{
   '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'CreativeCinema GmbH',
   description: t.meta.description, slogan: 'Direct. Innovative. Production-proof.',

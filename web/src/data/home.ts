@@ -154,7 +154,7 @@ export const home: Record<'de' | 'en', HomeContent> = {
       nap: ['Gundstraße 13a · 91056 Erlangen', '20 Min. von Nürnberg · Parkplätze am Studio', 'as@creative-cinema.net'],
       claim: 'Direkt. Innovativ. Produktionssicher.',
     },
-    footer: { copy: '© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.', links: [{ label: 'English', href: '/en/' }, { label: 'Impressum', href: '#' }, { label: 'Datenschutz', href: '#' }] },
+    footer: { copy: '© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.', links: [{ label: 'English', href: '/en/' }, { label: 'Impressum', href: '/impressum/' }, { label: 'Datenschutz', href: '/datenschutz/' }] },
   },
 
   en: {
@@ -268,6 +268,6 @@ export const home: Record<'de' | 'en', HomeContent> = {
       nap: ['Gundstraße 13a · 91056 Erlangen, Germany', '20 min from Nuremberg · parking on site', 'as@creative-cinema.net'],
       claim: 'Direct. Innovative. Production-proof.',
     },
-    footer: { copy: '© 2026 CreativeCinema GmbH, Erlangen, Germany · At home in the cosmos of media.', links: [{ label: 'Deutsch', href: '/' }, { label: 'Imprint', href: '#' }, { label: 'Privacy', href: '#' }] },
+    footer: { copy: '© 2026 CreativeCinema GmbH, Erlangen, Germany · At home in the cosmos of media.', links: [{ label: 'Deutsch', href: '/' }, { label: 'Imprint', href: '/impressum/' }, { label: 'Privacy', href: '/datenschutz/' }] },
   },
 };

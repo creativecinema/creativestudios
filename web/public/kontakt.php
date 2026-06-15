@@ -51,6 +51,24 @@ foreach (array($name, $email, $phone, $subject) as $v) {
   if (preg_match('/[\r\n]/', $v)) { respond(false, 'Ungültige Eingabe.', $ajax, $REDIRECT); }
 }
 
+// Bot-Test: Rechen-Challenge gegen HMAC-Token prüfen (fälschungssicher, serverseitig, stateless)
+$secret  = isset($cfg['secret']) ? $cfg['secret'] : '';
+if ($secret !== '') {
+  $captcha = trim((string) (isset($_POST['captcha']) ? $_POST['captcha'] : ''));
+  $ctok    = explode('.', (string) (isset($_POST['captcha_token']) ? $_POST['captcha_token'] : ''), 2);
+  $cexp    = (isset($ctok[0]) && ctype_digit($ctok[0])) ? (int) $ctok[0] : 0;
+  $csig    = isset($ctok[1]) ? $ctok[1] : '';
+  if ($captcha === '' || $cexp < 1 || $csig === '') {
+    respond(false, 'Bitte lösen Sie die Rechenaufgabe (Bot-Schutz).', $ajax, $REDIRECT);
+  }
+  if (time() > $cexp) {
+    respond(false, 'Die Rechenaufgabe ist abgelaufen – bitte Seite neu laden und erneut senden.', $ajax, $REDIRECT);
+  }
+  if (!hash_equals($csig, hash_hmac('sha256', $captcha . '|' . $cexp, $secret))) {
+    respond(false, 'Bot-Schutz: Die Rechenaufgabe wurde nicht korrekt gelöst.', $ajax, $REDIRECT);
+  }
+}
+
 if ($SMTP_USER === '' || $SMTP_PASS === '') {
   respond(false, 'Versand derzeit nicht konfiguriert. Bitte schreiben Sie an ' . $MAIL_TO . '.', $ajax, $REDIRECT);
 }

@@ -8,9 +8,13 @@ web/.env
 web/.env.production
 web/.env.deploy
 web/.gh-pat
+web/.smtp-pass
+web/public/kontakt-config.php
 **/.env
 **/.env.deploy
 **/.gh-pat
+**/.smtp-pass
+**/kontakt-config.php
 
 # OS / Editor
 .DS_Store

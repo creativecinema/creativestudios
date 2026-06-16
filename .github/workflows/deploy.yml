@@ -57,11 +57,17 @@ jobs:
 
       - name: Live-Check (Deploy verifizieren)
         run: |
+          sleep 6   # kurz auf Auslieferung/Cache warten
           ok=1
-          for path in "/" "/en/" "/studio/led-studio-mieten/" "/xr-studio/virtual-production/" "/wissen/kosten-drehtag/"; do
-            code=$(curl -s -o /dev/null -w "%{http_code}" "https://creative-studios.tv$path")
+          for path in "/" "/en/" "/wissen/" "/studio/led-studio-mieten/" "/xr-studio/virtual-production/" "/wissen/kosten-drehtag/"; do
+            code=000
+            for try in 1 2 3 4 5; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 15 "https://creative-studios.tv$path?ci=$GITHUB_RUN_ID")
+              [ "$code" = "200" ] && break
+              sleep 6
+            done
             echo "  $path -> HTTP $code"
             [ "$code" = "200" ] || ok=0
           done
-          [ "$ok" = "1" ] || { echo "::error::Mindestens eine Seite ist nicht HTTP 200"; exit 1; }
+          [ "$ok" = "1" ] || { echo "::error::Mindestens eine Seite ist nach mehreren Versuchen nicht HTTP 200"; exit 1; }
           echo "✓ Alle Seiten live (HTTP 200)"

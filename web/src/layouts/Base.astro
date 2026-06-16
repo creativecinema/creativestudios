@@ -10,17 +10,21 @@ export interface Props {
   hasEN?: boolean;        // existiert eine EN-Variante dieser Seite?
   jsonld?: object[];      // Schema.org-Objekte für den <head>
   ogImage?: string;       // absolute URL; Default unten
+  robots?: string;        // z. B. 'noindex, follow' für Rechtstexte/404
 }
 const {
   lang, title, description, path = '', hasEN = true, jsonld = [],
-  ogImage,
+  ogImage, robots = 'index, follow',
 } = Astro.props;
 
 const base = 'https://creative-studios.tv/';
 const canonical = lang === 'de' ? base + path : base + 'en/' + path;
 const altDe = base + path;
 const altEn = base + 'en/' + path;
-const og = ogImage || base + 'og-cover.svg';
+const og = ogImage || base + 'og-cover.jpg';
+const ogAlt = lang === 'de'
+  ? 'CreativeCinema – Filmproduktion & Virtual-Production-Studio in Erlangen/Nürnberg'
+  : 'CreativeCinema – video & virtual production studio in Germany';
 ---
 <!doctype html>
 <html lang={lang}>
@@ -30,19 +34,31 @@ const og = ogImage || base + 'og-cover.svg';
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <meta name="robots" content={robots} />
   <link rel="canonical" href={canonical} />
   <link rel="alternate" hreflang="de" href={altDe} />
   {hasEN && <link rel="alternate" hreflang="en" href={altEn} />}
   <link rel="alternate" hreflang="x-default" href={altDe} />
   <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CreativeCinema" />
   <meta property="og:url" content={canonical} />
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
+  {hasEN && <meta property="og:locale:alternate" content={lang === 'de' ? 'en_US' : 'de_DE'} />}
   <meta property="og:image" content={og} />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content={ogAlt} />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={og} />
   <meta name="theme-color" content="#101114" />
   <link rel="icon" href="/assets/cc-logo-rocket.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/poppins-800-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/source-sans-3-400-latin.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/styles/fonts.css" />
   <link rel="stylesheet" href="/styles/cc.css" />
   {jsonld.map((obj) => <script type="application/ld+json" set:html={JSON.stringify(obj)} />)}

@@ -22,16 +22,33 @@ for (const l of t.footer.links) {
   if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
 }
 
-const jsonld = [{
-  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'CreativeCinema GmbH',
-  description: t.meta.description, slogan: 'Direct. Innovative. Production-proof.',
-  address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressCountry: 'DE' },
-  areaServed: ['Germany', 'Europe', 'Erlangen', 'Nuremberg'], url: 'https://creative-studios.tv/en/', email: 'as@creative-cinema.net',
-  makesOffer: [
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'LED Studio / Virtual Production Stage rental' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Virtual Production / XR film production' } },
-  ],
-}];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://creative-studios.tv/#org',
+    name: 'CreativeCinema GmbH', url: 'https://creative-studios.tv/',
+    logo: 'https://creative-studios.tv/assets/cc-logo-white.svg',
+    image: 'https://creative-studios.tv/og-cover.jpg', email: 'info@creative-cinema.net',
+    description: t.meta.description,
+    address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://creative-studios.tv/#website',
+    url: 'https://creative-studios.tv/', name: 'CreativeCinema', inLanguage: ['de', 'en'],
+    publisher: { '@id': 'https://creative-studios.tv/#org' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': ['LocalBusiness', 'ProfessionalService'], '@id': 'https://creative-studios.tv/#business',
+    name: 'CreativeCinema GmbH', description: t.meta.description, slogan: 'Direct. Innovative. Production-proof.',
+    image: 'https://creative-studios.tv/og-cover.jpg', url: 'https://creative-studios.tv/', email: 'info@creative-cinema.net',
+    priceRange: '€€', knowsLanguage: ['de', 'en'],
+    address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' },
+    areaServed: ['Germany', 'Europe', 'Erlangen', 'Nuremberg', 'Bavaria'],
+    makesOffer: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'LED studio / virtual production stage rental' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Video & virtual production' } },
+    ],
+  },
+];
 ---
 <Base lang="en" title={t.meta.title} description={t.meta.description} jsonld={jsonld}>
   <Home lang="en" t={t} />

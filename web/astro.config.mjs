@@ -18,7 +18,10 @@ export default defineConfig({
       bridge: true,        // Live-Vorschau im Storyblok Visual Editor
       components: {},      // wir mappen Felder manuell auf Home.astro (kein Blok-Zwang)
     }),
-    sitemap(),
+    sitemap({
+      i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US' } },
+      filter: (page) => !/\/(impressum|datenschutz)\/?$/.test(page),
+    }),
   ],
   i18n: {
     defaultLocale: 'de',

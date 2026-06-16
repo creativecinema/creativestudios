@@ -21,16 +21,33 @@ for (const l of t.footer.links) {
   if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
 }
 
-const jsonld = [{
-  '@context': 'https://schema.org', '@type': 'LocalBusiness', name: 'CreativeCinema GmbH',
-  description: t.meta.description, slogan: 'Direkt. Innovativ. Produktionssicher.',
-  address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressCountry: 'DE' },
-  areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Bayern'], url: 'https://creative-studios.tv/', email: 'as@creative-cinema.net',
-  makesOffer: [
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'LED-Studio Vermietung' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Virtual Production / XR-Filmproduktion' } },
-  ],
-}];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://creative-studios.tv/#org',
+    name: 'CreativeCinema GmbH', url: 'https://creative-studios.tv/',
+    logo: 'https://creative-studios.tv/assets/cc-logo-white.svg',
+    image: 'https://creative-studios.tv/og-cover.jpg', email: 'info@creative-cinema.net',
+    description: t.meta.description,
+    address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bayern', addressCountry: 'DE' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'WebSite', '@id': 'https://creative-studios.tv/#website',
+    url: 'https://creative-studios.tv/', name: 'CreativeCinema', inLanguage: ['de', 'en'],
+    publisher: { '@id': 'https://creative-studios.tv/#org' },
+  },
+  {
+    '@context': 'https://schema.org', '@type': ['LocalBusiness', 'ProfessionalService'], '@id': 'https://creative-studios.tv/#business',
+    name: 'CreativeCinema GmbH', description: t.meta.description, slogan: 'Direkt. Innovativ. Produktionssicher.',
+    image: 'https://creative-studios.tv/og-cover.jpg', url: 'https://creative-studios.tv/', email: 'info@creative-cinema.net',
+    priceRange: '€€', knowsLanguage: ['de', 'en'],
+    address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bayern', addressCountry: 'DE' },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Bayern', 'Deutschland'],
+    makesOffer: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'LED-Studio / Virtual-Production-Stage mieten' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Filmproduktion & Virtual Production' } },
+    ],
+  },
+];
 ---
 <Base lang="de" title={t.meta.title} description={t.meta.description} jsonld={jsonld}>
   <Home lang="de" t={t} />

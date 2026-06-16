@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+// Alle DE-Artikel aus diesem Ordner einsammeln (Markdown), Drafts ausblenden, neueste zuerst.
+const mods = import.meta.glob('./*.md', { eager: true });
+const posts = Object.values(mods)
+  .map((m) => m.frontmatter)
+  .filter((f) => f && !f.draft)
+  .sort((a, b) => (a.pubDate < b.pubDate ? 1 : -1));
+---
+<Base
+  lang="de"
+  title="Wissen: XR & Virtual Production | CreativeCinema"
+  description="Praxiswissen zu Virtual Production, LED-Studio und XR-Filmproduktion – Leitfäden, Use-Cases und Kostentipps aus Erlangen/Nürnberg."
+  path="wissen/"
+  hasEN={true}
+>
+  <SiteNav lang="de" active="wissen" />
+
+  <main class="legal">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Wissen</span>
+      <h1 class="section-h">XR &amp; Virtual Production – Wissen</h1>
+      <p class="lede">Leitfäden, Use-Cases und Praxistipps rund um Virtual Production, LED-Studio und XR-Filmproduktion.</p>
+
+      <ul class="post-list">
+        {posts.map((p) => (
+          <li>
+            <a href={'/' + p.path}>
+              <strong>{p.title}</strong>
+              <span>{p.description}</span>
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/wissen/kosten-drehtag/">
+            <strong>Drehtag-Rechner</strong>
+            <span>Interaktiv kalkulieren: Was kostet Ihr Drehtag – klassisch vs. Virtual Production?</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </main>
+
+  <SiteFooter lang="de" />
+</Base>
+
+<style>
+  .post-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 14px; }
+  .post-list a { display: block; padding: 20px 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); transition: border-color .2s, transform .2s; }
+  .post-list a:hover { border-color: var(--ci-rot); transform: translateY(-2px); }
+  .post-list strong { display: block; color: var(--bone); font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; margin-bottom: 6px; }
+  .post-list span { color: var(--muted); font-size: .92rem; line-height: 1.5; }
+</style>

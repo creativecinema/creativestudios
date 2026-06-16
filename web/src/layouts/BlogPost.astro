@@ -1,0 +1,65 @@
+---
+// Layout für Blog-/Wissens-Artikel (Markdown). Zweisprachig via frontmatter.lang.
+// Markdown-Dateien setzen: layout, lang, path, title, description, pubDate, (keywords, updated).
+import Base from './Base.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+const { frontmatter } = Astro.props;
+const lang = frontmatter.lang === 'en' ? 'en' : 'de';
+const en = lang === 'en';
+const path = frontmatter.path; // z. B. "wissen/was-ist-virtual-production/" bzw. "knowledge/what-is-virtual-production/"
+const url = 'https://creative-studios.tv/' + (en ? 'en/' : '') + path;
+const hubHref = en ? '/en/knowledge/' : '/wissen/';
+const hubLabel = en ? 'Knowledge' : 'Wissen';
+const ctaHref = en ? '/en/#kontakt' : '/#kontakt';
+const ctaLabel = en ? 'Check availability' : 'Verfügbarkeit anfragen';
+const dateFmt = frontmatter.pubDate
+  ? new Date(frontmatter.pubDate).toLocaleDateString(en ? 'en-GB' : 'de-DE', { year: 'numeric', month: 'long', day: 'numeric' })
+  : '';
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'BlogPosting',
+    headline: frontmatter.title, description: frontmatter.description,
+    datePublished: frontmatter.pubDate, dateModified: frontmatter.updated || frontmatter.pubDate,
+    inLanguage: lang, image: 'https://creative-studios.tv/og-cover.jpg', mainEntityOfPage: url,
+    author: { '@type': 'Organization', name: 'CreativeCinema GmbH', url: 'https://creative-studios.tv/' },
+    publisher: { '@type': 'Organization', name: 'CreativeCinema GmbH', logo: { '@type': 'ImageObject', url: 'https://creative-studios.tv/assets/cc-logo-white.svg' } },
+  },
+  {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+      { '@type': 'ListItem', position: 1, name: en ? 'Home' : 'Start', item: 'https://creative-studios.tv/' + (en ? 'en/' : '') },
+      { '@type': 'ListItem', position: 2, name: hubLabel, item: 'https://creative-studios.tv/' + (en ? 'en/knowledge/' : 'wissen/') },
+      { '@type': 'ListItem', position: 3, name: frontmatter.title, item: url },
+    ],
+  },
+];
+---
+<Base lang={lang} title={`${frontmatter.title} | CreativeCinema`} description={frontmatter.description} path={path} hasEN={false} noHreflang={true} jsonld={jsonld}>
+  <SiteNav lang={lang} active="wissen" />
+
+  <main class="legal">
+    <div class="wrap-narrow">
+      <nav class="crumb" aria-label="Breadcrumb"><a href={en ? '/en/' : '/'}>{en ? 'Home' : 'Start'}</a> <span>/</span> <a href={hubHref}>{hubLabel}</a></nav>
+      <span class="eyebrow">XR &amp; Virtual Production</span>
+      <h1 class="section-h">{frontmatter.title}</h1>
+      {dateFmt && <p class="post-date">{dateFmt}</p>}
+
+      <article class="prose"><slot /></article>
+
+      <div class="cta-band reveal" style="margin-top:52px">
+        <h2>{en ? 'Plan your shoot' : 'Drehtermin sichern'}</h2>
+        <p>{en ? 'Tell us your project — reply within 24 hours.' : 'Sagen Sie uns Ihr Vorhaben — Antwort in 24 Stunden.'}</p>
+        <div class="btn-row"><a class="btn btn-primary magnetic" href={ctaHref}>{ctaLabel} <span class="arrow">→</span></a></div>
+      </div>
+
+      <p class="legal-back"><a href={hubHref}>{en ? '← All articles' : '← Alle Artikel'}</a></p>
+    </div>
+  </main>
+
+  <SiteFooter lang={lang} />
+</Base>
+
+<style>
+  .post-date { color: var(--muted); font-size: .85rem; margin: -6px 0 28px; }
+  .prose :global(h2) { scroll-margin-top: 90px; }
+</style>

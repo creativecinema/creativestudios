@@ -21,6 +21,13 @@ for (const l of t.footer.links) {
   if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
 }
 
+// Kontakt-NAP konsistent: E-Mail vereinheitlichen + Telefonnummer sicherstellen
+t.contact.nap = t.contact.nap.map((l) => l.replace(/as@creative-cinema\.net/g, 'info@creative-cinema.net'));
+if (!t.contact.nap.some((l) => /174/.test(l))) {
+  const i = t.contact.nap.findIndex((l) => l.includes('@'));
+  if (i >= 0) t.contact.nap.splice(i, 0, 'Tel. 0174 / 84 84 84 2'); else t.contact.nap.push('Tel. 0174 / 84 84 84 2');
+}
+
 const jsonld = [
   {
     '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://creative-studios.tv/#org',

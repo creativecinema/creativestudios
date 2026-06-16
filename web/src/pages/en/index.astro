@@ -22,6 +22,13 @@ for (const l of t.footer.links) {
   if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
 }
 
+// Keep contact NAP consistent: unify e-mail + ensure phone number
+t.contact.nap = t.contact.nap.map((l) => l.replace(/as@creative-cinema\.net/g, 'info@creative-cinema.net'));
+if (!t.contact.nap.some((l) => /174/.test(l))) {
+  const i = t.contact.nap.findIndex((l) => l.includes('@'));
+  if (i >= 0) t.contact.nap.splice(i, 0, 'Phone +49 174 8484842'); else t.contact.nap.push('Phone +49 174 8484842');
+}
+
 const jsonld = [
   {
     '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://creative-studios.tv/#org',

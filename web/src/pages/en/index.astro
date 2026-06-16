@@ -18,8 +18,8 @@ try {
 
 // Rechtliche Footer-Links immer auf die echten Seiten zeigen (unabhängig von Storyblok-Altdaten)
 for (const l of t.footer.links) {
-  if (/impressum|imprint/i.test(l.label)) l.href = '/impressum/';
-  if (/datenschutz|privacy/i.test(l.label)) l.href = '/datenschutz/';
+  if (/impressum|imprint/i.test(l.label)) l.href = '/en/imprint/';
+  if (/datenschutz|privacy/i.test(l.label)) l.href = '/en/privacy/';
 }
 
 // Keep contact NAP consistent: unify e-mail + ensure phone number

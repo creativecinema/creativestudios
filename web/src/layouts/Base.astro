@@ -11,10 +11,11 @@ export interface Props {
   jsonld?: object[];      // Schema.org-Objekte für den <head>
   ogImage?: string;       // absolute URL; Default unten
   robots?: string;        // z. B. 'noindex, follow' für Rechtstexte/404
+  noHreflang?: boolean;   // EN-only-Seiten ohne DE-Pendant (kein hreflang-Alternate)
 }
 const {
   lang, title, description, path = '', hasEN = true, jsonld = [],
-  ogImage, robots = 'index, follow',
+  ogImage, robots = 'index, follow', noHreflang = false,
 } = Astro.props;
 
 const base = 'https://creative-studios.tv/';
@@ -37,9 +38,9 @@ const ogAlt = lang === 'de'
   <meta name="robots" content={robots} />
   <meta name="google-site-verification" content="Yw7e9x4SyxSiKK7ImpzOBVD95PDhr23O5ObgEuMDLjs" />
   <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="de" href={altDe} />
-  {hasEN && <link rel="alternate" hreflang="en" href={altEn} />}
-  <link rel="alternate" hreflang="x-default" href={altDe} />
+  {!noHreflang && <link rel="alternate" hreflang="de" href={altDe} />}
+  {!noHreflang && hasEN && <link rel="alternate" hreflang="en" href={altEn} />}
+  {!noHreflang && <link rel="alternate" hreflang="x-default" href={altDe} />}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="CreativeCinema" />
   <meta property="og:url" content={canonical} />
@@ -70,7 +71,7 @@ const ogAlt = lang === 'de'
   <div class="cinebars" aria-hidden="true"><i class="top"></i><i class="bot"></i></div>
   <div class="progress" aria-hidden="true"></div>
   <slot />
-  <CookieConsent />
+  <CookieConsent lang={lang} />
   <script is:inline src="/scripts/cc.js"></script>
 </body>
 </html>

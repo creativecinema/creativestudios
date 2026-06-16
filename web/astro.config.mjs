@@ -20,7 +20,7 @@ export default defineConfig({
     }),
     sitemap({
       i18n: { defaultLocale: 'de', locales: { de: 'de-DE', en: 'en-US' } },
-      filter: (page) => !/\/(impressum|datenschutz)\/?$/.test(page),
+      filter: (page) => !/\/(impressum|datenschutz|imprint|privacy)\/?$/.test(page),
     }),
   ],
   i18n: {

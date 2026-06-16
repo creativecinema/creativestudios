@@ -1,9 +1,19 @@
 ---
-// Standard-Footer für Unterseiten.
+// Standard-Footer für Unterseiten, zweisprachig (DE/EN).
+interface Props { lang?: 'de' | 'en' }
+const { lang = 'de' } = Astro.props;
+const en = lang === 'en';
+const copy = en
+  ? '© 2026 CreativeCinema GmbH, Erlangen, Germany · At home in the cosmos of media.'
+  : '© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.';
+const links = en
+  ? [{ label: 'Home', href: '/en/' }, { label: 'Deutsch', href: '/' }, { label: 'Imprint', href: '/en/imprint/' }, { label: 'Privacy', href: '/en/privacy/' }]
+  : [{ label: 'Start', href: '/' }, { label: 'English', href: '/en/' }, { label: 'Impressum', href: '/impressum/' }, { label: 'Datenschutz', href: '/datenschutz/' }];
+const cookieLabel = en ? 'Cookie settings' : 'Cookie-Einstellungen';
 ---
 <footer class="site">
   <div class="wrap foot-in">
-    <span>© 2026 CreativeCinema GmbH, Erlangen · Zuhause im Kosmos der Medienwelt.</span>
-    <span><a href="/">Start</a> · <a href="/en/">English</a> · <a href="/impressum/">Impressum</a> · <a href="/datenschutz/">Datenschutz</a> · <a href="#" onclick="event.preventDefault();window.openCookieSettings&&window.openCookieSettings()">Cookie-Einstellungen</a></span>
+    <span>{copy}</span>
+    <span>{links.map((l, i) => (<>{i > 0 ? ' · ' : ''}<a href={l.href}>{l.label}</a></>))} · <a href="#" onclick="event.preventDefault();window.openCookieSettings&&window.openCookieSettings()">{cookieLabel}</a></span>
   </div>
 </footer>

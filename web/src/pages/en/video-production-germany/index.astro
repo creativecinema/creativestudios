@@ -1,0 +1,138 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SiteNav from '../../../components/SiteNav.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+
+const title = 'Video Production Company in Germany | English-Speaking | CreativeCinema';
+const description = 'English-speaking video & film production company near Nuremberg, Germany. Brand films, recruiting, trade-fair video & virtual production — full service under one roof. Production services for international brands.';
+const path = 'video-production-germany/';
+
+const services = [
+  { tag: 'Brand', title: 'Brand & product films', desc: 'Image and product films that make your brand tangible — from concept to a finished, polished cut.' },
+  { tag: 'HR', title: 'Recruiting & employer branding', desc: 'Authentic recruiting videos for your careers page and social media — one shoot day, several clips.' },
+  { tag: 'Events', title: 'Trade-fair & event films', desc: 'Trade-fair films and event recaps that look bigger than the hall allows — without disrupting your operation.' },
+  { tag: 'Live', title: 'Livestreams & hybrid events', desc: 'Town halls, keynotes and product launches with a broadcast-grade backdrop instead of an office wall.' },
+  { tag: 'Retainer', title: 'Content retainers', desc: 'Monthly reels and series formats from your fixed (virtual) set — predictable, recognisable, on budget.' },
+  { tag: 'XR', title: 'Virtual production', desc: 'Five locations in one shoot day on our 50 m² LED volume — photoreal, in-camera, visible live on set.' },
+];
+const reasons = [
+  { title: 'English-speaking crew', desc: 'We work in English with international brands and agencies and act as your production partner and fixer in Germany.' },
+  { title: 'Full service, one roof', desc: 'Concept, shoot, LED stage and post production from a single team — fewer interfaces, faster turnaround.' },
+  { title: 'Our own LED volume', desc: '50 m² LED wall with camera tracking and an Unreal Engine workflow — virtual production without a third-party studio.' },
+  { title: 'Central & easy to reach', desc: 'Based in Erlangen in the Nuremberg metropolitan region — close to major industry, well connected by road, rail and air.' },
+];
+const faqs = [
+  { q: 'Do you work with English-speaking crews?', a: 'Yes. We work entirely in English with international brands and agencies and can act as your production-service partner and fixer in Germany.' },
+  { q: 'Can you act as a production-service partner / fixer in Germany?', a: 'Absolutely. We handle locations, permits, crew, equipment and logistics on the ground — or take on the full production from concept to delivery.' },
+  { q: 'What does a production cost?', a: 'Entry-level projects such as a recruiting day start in the low five figures. Thanks to saved locations, travel and shoot days, the total budget is often below that of a classic shoot. You get a fixed quote within 24 hours.' },
+  { q: 'Where are you located?', a: 'In Erlangen, about 20 minutes from Nuremberg, with parking and ground-level load-in at the studio — and within easy reach of Munich and the wider region.' },
+  { q: 'Do you offer virtual production?', a: 'Yes. We run our own 50 m² LED volume with camera tracking (in-camera VFX) — see our virtual production studio page for details.' },
+];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Video & film production (production services)',
+    name: 'Video production company in Germany',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' }, telephone: '+49 174 8484842', email: 'info@creative-cinema.net' },
+    areaServed: ['Germany', 'Europe', 'Nuremberg', 'Erlangen', 'Munich'], availableLanguage: ['en', 'de'],
+    url: 'https://creative-studios.tv/en/video-production-germany/',
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://creative-studios.tv/en/' },
+    { '@type': 'ListItem', position: 2, name: 'Video production', item: 'https://creative-studios.tv/en/video-production-germany/' },
+  ] },
+];
+---
+<Base lang="en" title={title} description={description} path={path} hasEN={false} noHreflang={true} jsonld={jsonld}>
+  <SiteNav active="video" lang="en" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/en/">Home</a> <span>/</span> Video production</nav>
+      <span class="eyebrow">Video &amp; Virtual Production · Germany</span>
+      <h1>Video production company in Germany — English-speaking, one roof</h1>
+      <p class="lede">CreativeCinema is your English-speaking video and film production partner near Nuremberg, Germany. From brand films and recruiting videos to trade-fair content and livestreams — concept, shoot and post under one roof, including our own 50&nbsp;m² LED virtual-production stage.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="#kontakt">Check availability <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/en/virtual-production-studio/">Virtual production studio</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="warum">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Your partner in Germany</span>
+      <h2>One team for your production in Germany and Europe</h2>
+      <p>International brands and agencies work with us when they need a reliable production partner on the ground in Germany — whether as a full-service production company or as a <strong>production-service partner and fixer</strong>. We speak your language, know the locations, and bring concept, crew, our own LED stage and post production together under one roof. Our base in Erlangen, in the Nuremberg metropolitan region, puts us within an hour of major industry and well connected to Munich, Frankfurt and beyond.</p>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap">
+      <span class="eyebrow">What we produce</span>
+      <h2 class="section-h">From a single film to a content programme.</h2>
+      <div class="usecases">
+        {services.map((s, i) => (
+          <div class={`uc reveal${i % 3 === 1 ? ' d1' : i % 3 === 2 ? ' d2' : ''}`}><span class="mono">{s.tag}</span><h4>{s.title}</h4><p>{s.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">Why CreativeCinema</span>
+      <h2 class="section-h">Production-proof — and easy to work with.</h2>
+      <div class="usecases">
+        {reasons.map((r, i) => (
+          <div class={`uc reveal${i % 2 === 1 ? ' d1' : ''}`}><h4>{r.title}</h4><p>{r.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap">
+      <span class="eyebrow">How it works</span>
+      <h2 class="section-h">From brief to delivery in four steps.</h2>
+      <div class="steps reveal">
+        <div class="step"><div class="n">1</div><h4>Brief &amp; goals</h4><p>Tell us your project, audience and timing — we advise on format and approach.</p></div>
+        <div class="step"><div class="n">2</div><h4>Concept &amp; fixed quote</h4><p>You get a concept and a transparent fixed quote within 24 hours.</p></div>
+        <div class="step"><div class="n">3</div><h4>Shoot</h4><p>In our LED studio or on location — with an English-speaking crew.</p></div>
+        <div class="step"><div class="n">4</div><h4>Editing &amp; delivery</h4><p>Editing, grade and sound — delivered in every format you need.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-h">Before you get in touch.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="wrap contact-in">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h2>Let's plan your shoot — reply within 24 hours.</h2>
+        <p class="lede">Send us your project and preferred dates. In a free 15-minute tech briefing we clarify environments, camera and workflow.</p>
+        <ContactForm lang="en" />
+      </div>
+      <div class="nap">
+        <strong>CREATIVECINEMA GMBH</strong><br />
+        Gundstraße 13a · 91056 Erlangen, Germany<br />
+        20 min from Nuremberg · parking on site<br />
+        Phone +49 174 8484842<br />
+        info@creative-cinema.net
+        <br /><br /><span class="accent">Direct. Innovative. Production-proof.</span>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter lang="en" />
+</Base>

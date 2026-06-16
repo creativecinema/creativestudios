@@ -1,79 +1,84 @@
 ---
-// Kontaktformular -> /kontakt.php (Mail via one.com-SMTP an info@creative-cinema.net).
-// Spamschutz ohne externen Dienst: Honeypot + Zeitfalle + Pflicht-Häkchen + Rechen-Bot-Test (challenge.php).
+// Kontaktformular -> /kontakt.php (Mail via one.com-SMTP an info@creative-cinema.net), zweisprachig.
+// Spamschutz: Honeypot + Zeitfalle + Pflicht-Häkchen + Rechen-Bot-Test (challenge.php).
+interface Props { lang?: 'de' | 'en' }
+const { lang = 'de' } = Astro.props;
+const en = lang === 'en';
+const t = en
+  ? { name: 'Name', email: 'Email', phone: 'Phone', subject: 'Preferred date / subject', message: 'Your message',
+      captcha: 'Anti-spam: what is', privacyA: 'I have read the', privacyB: 'privacy policy', privacyC: 'and consent to my data being processed to handle my enquiry.',
+      submit: 'Send enquiry', note: '* Required · reply within 24 hours', policyHref: '/en/privacy/',
+      noscript: 'Please enable JavaScript to use the form – or email', hp: 'Please leave blank' }
+  : { name: 'Name', email: 'E-Mail', phone: 'Telefon', subject: 'Wunschtermin / Betreff', message: 'Ihre Nachricht',
+      captcha: 'Bot-Schutz: Wie viel ist', privacyA: 'Ich habe die', privacyB: 'Datenschutzerklärung', privacyC: 'gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu.',
+      submit: 'Anfrage senden', note: '* Pflichtfelder · Antwort in 24 Stunden', policyHref: '/datenschutz/',
+      noscript: 'Für das Formular bitte JavaScript aktivieren – oder schreiben Sie an', hp: 'Bitte frei lassen' };
 ---
-<form class="cform" id="cform" method="post" action="/kontakt.php" novalidate>
+<form class="cform" id="cform" method="post" action="/kontakt.php" data-lang={lang} novalidate>
   <div class="cform-status" id="cform-status" role="status" aria-live="polite" hidden></div>
 
   <div class="cform-grid">
-    <label class="cf-field"><span class="cf-lab">Name <em>*</em></span><input type="text" name="name" required autocomplete="name" /></label>
-    <label class="cf-field"><span class="cf-lab">E-Mail <em>*</em></span><input type="email" name="email" required autocomplete="email" /></label>
-    <label class="cf-field"><span class="cf-lab">Telefon</span><input type="tel" name="phone" autocomplete="tel" /></label>
-    <label class="cf-field"><span class="cf-lab">Wunschtermin / Betreff</span><input type="text" name="subject" /></label>
+    <label class="cf-field"><span class="cf-lab">{t.name} <em>*</em></span><input type="text" name="name" required autocomplete="name" /></label>
+    <label class="cf-field"><span class="cf-lab">{t.email} <em>*</em></span><input type="email" name="email" required autocomplete="email" /></label>
+    <label class="cf-field"><span class="cf-lab">{t.phone}</span><input type="tel" name="phone" autocomplete="tel" /></label>
+    <label class="cf-field"><span class="cf-lab">{t.subject}</span><input type="text" name="subject" /></label>
   </div>
 
-  <label class="cf-field"><span class="cf-lab">Ihre Nachricht <em>*</em></span><textarea name="message" rows="5" required></textarea></label>
+  <label class="cf-field"><span class="cf-lab">{t.message} <em>*</em></span><textarea name="message" rows="5" required></textarea></label>
 
   <label class="cf-field cf-captcha">
-    <span class="cf-lab">Bot-Schutz: Wie viel ist <strong id="cf-q">…</strong>? <em>*</em></span>
-    <input type="text" name="captcha" inputmode="numeric" autocomplete="off" required aria-label="Bitte die Rechenaufgabe lösen" />
+    <span class="cf-lab">{t.captcha} <strong id="cf-q">…</strong>? <em>*</em></span>
+    <input type="text" name="captcha" inputmode="numeric" autocomplete="off" required aria-label={t.captcha} />
   </label>
   <input type="hidden" name="captcha_token" id="cf-token" value="" />
 
   <label class="cf-check">
     <input type="checkbox" name="privacy" required />
-    <span>Ich habe die <a href="/datenschutz/" target="_blank" rel="noopener">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Angaben zur Bearbeitung meiner Anfrage zu. <em>*</em></span>
+    <span>{t.privacyA} <a href={t.policyHref} target="_blank" rel="noopener">{t.privacyB}</a> {t.privacyC} <em>*</em></span>
   </label>
 
-  <!-- Spamschutz: Honeypot (bitte NICHT ausfüllen) + Zeitstempel -->
-  <div class="cf-hp" aria-hidden="true"><label>Bitte frei lassen<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
+  <div class="cf-hp" aria-hidden="true"><label>{t.hp}<input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
   <input type="hidden" name="t" value="" />
 
   <div class="cf-actions">
-    <button type="submit" class="btn btn-primary magnetic">Anfrage senden <span class="arrow">→</span></button>
-    <span class="cf-note">* Pflichtfelder · Antwort in 24&nbsp;Stunden</span>
+    <button type="submit" class="btn btn-primary magnetic">{t.submit} <span class="arrow">→</span></button>
+    <span class="cf-note">{t.note}</span>
   </div>
-  <noscript><p class="cf-note" style="margin-top:12px">Für das Formular bitte JavaScript aktivieren – oder schreiben Sie direkt an <a href="mailto:info@creative-cinema.net">info@creative-cinema.net</a>.</p></noscript>
+  <noscript><p class="cf-note" style="margin-top:12px">{t.noscript} <a href="mailto:info@creative-cinema.net">info@creative-cinema.net</a>.</p></noscript>
 </form>
 
 <script is:inline>
 (function () {
   var f = document.getElementById('cform'); if (!f) return;
+  var en = f.getAttribute('data-lang') === 'en';
+  var MSG = en
+    ? { ok: "Thank you! We'll get back to you within 24 hours.", err: 'Please check your entries (incl. the anti-spam question) – or email info@creative-cinema.net.', fail: 'Sending failed. Please email info@creative-cinema.net.' }
+    : { ok: 'Danke! Wir melden uns innerhalb von 24 Stunden.', err: 'Bitte prüfen Sie Ihre Eingaben (inkl. Rechenaufgabe) – oder schreiben Sie an info@creative-cinema.net.', fail: 'Senden fehlgeschlagen. Bitte schreiben Sie an info@creative-cinema.net.' };
   var status = document.getElementById('cform-status');
   var tfield = f.querySelector('input[name=t]'); if (tfield) tfield.value = String(Date.now());
-  var qEl = document.getElementById('cf-q');
-  var tokEl = document.getElementById('cf-token');
-
+  var qEl = document.getElementById('cf-q'); var tokEl = document.getElementById('cf-token');
   function loadChallenge() {
     if (qEl) qEl.textContent = '…';
     fetch('/challenge.php', { headers: { 'X-Requested-With': 'fetch' } })
       .then(function (r) { return r.json(); })
-      .then(function (d) { if (d && d.q) { qEl.textContent = d.q; tokEl.value = d.token || ''; } else { qEl.textContent = '(Seite neu laden)'; } })
-      .catch(function () { qEl.textContent = '(Seite neu laden)'; });
+      .then(function (d) { if (d && d.q) { qEl.textContent = d.q; tokEl.value = d.token || ''; } else { qEl.textContent = en ? '(reload page)' : '(Seite neu laden)'; } })
+      .catch(function () { qEl.textContent = en ? '(reload page)' : '(Seite neu laden)'; });
   }
   loadChallenge();
-
   function show(ok, msg) { status.hidden = false; status.textContent = msg; status.className = 'cform-status ' + (ok ? 'ok' : 'err'); status.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   try {
     var p = new URLSearchParams(location.search);
-    if (p.get('sent') === 'ok') show(true, 'Danke! Wir melden uns innerhalb von 24 Stunden.');
-    else if (p.get('sent') === 'err') show(false, 'Bitte prüfen Sie Ihre Eingaben – oder schreiben Sie an info@creative-cinema.net.');
+    if (p.get('sent') === 'ok') show(true, MSG.ok);
+    else if (p.get('sent') === 'err') show(false, MSG.err);
   } catch (e) {}
-
   f.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!f.checkValidity()) { f.reportValidity(); return; }
     var btn = f.querySelector('button[type=submit]'); btn.disabled = true;
     fetch('/kontakt.php', { method: 'POST', headers: { 'X-Requested-With': 'fetch' }, body: new FormData(f) })
       .then(function (r) { return r.json(); })
-      .then(function (d) {
-        show(!!d.ok, d.msg || (d.ok ? 'Danke!' : 'Senden fehlgeschlagen.'));
-        btn.disabled = false;
-        if (tfield) tfield.value = String(Date.now());
-        if (d.ok) { f.reset(); }
-        loadChallenge();
-      })
-      .catch(function () { show(false, 'Senden fehlgeschlagen. Bitte schreiben Sie an info@creative-cinema.net.'); btn.disabled = false; loadChallenge(); });
+      .then(function (d) { show(!!d.ok, d.ok ? MSG.ok : MSG.err); btn.disabled = false; if (tfield) tfield.value = String(Date.now()); if (d.ok) { f.reset(); } loadChallenge(); })
+      .catch(function () { show(false, MSG.fail); btn.disabled = false; loadChallenge(); });
   });
 })();
 </script>

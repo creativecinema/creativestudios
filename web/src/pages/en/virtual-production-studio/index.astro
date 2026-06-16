@@ -1,0 +1,161 @@
+---
+import Base from '../../../layouts/Base.astro';
+import SiteNav from '../../../components/SiteNav.astro';
+import SiteFooter from '../../../components/SiteFooter.astro';
+import ContactForm from '../../../components/ContactForm.astro';
+
+const title = 'Virtual Production Studio in Germany | 50 m² LED Volume | CreativeCinema';
+const description = 'Rent a virtual production studio in Germany: 50 m² LED volume with camera tracking & Unreal Engine, near Nuremberg. In-camera VFX, dry hire or with operator. English-speaking crew.';
+const path = 'virtual-production-studio/';
+
+const specs = [
+  ['LED area', '50 m² high-resolution LED wall'],
+  ['Tracking', 'Camera tracking for perspective-correct backgrounds (in-camera VFX)'],
+  ['Engine', 'Unreal Engine workflow, real-time environments, bring your own content as a file'],
+  ['Set library', 'A growing selection of ready-made environments — or bring your own'],
+  ['Light & sound', 'Professional lighting, audio, make-up and green room'],
+  ['Alternative', 'Greenscreen setup available on request'],
+  ['Logistics', 'Parking at the door, ground-level load-in'],
+  ['Location', 'Gundstraße 13a, 91056 Erlangen · 20 min from Nuremberg'],
+];
+const prices = [
+  { name: 'Dry hire', desc: 'Studio + LED tech, your team produces.', tag: 'from €1,450 / ½ day' },
+  { name: 'Studio + operator', desc: 'Our LED/tracking operator supports your crew on the wall, tracking and Unreal Engine.', tag: 'from €2,500 / day', featured: true },
+  { name: 'Full service', desc: 'Crew, lighting, camera and directing support — quote within 24 hours.', tag: 'on request' },
+];
+const uses = [
+  { tag: 'Brand', title: 'Brand & product films', desc: "Brand worlds that don't physically exist — photoreal and visible in real time on set." },
+  { tag: 'HR', title: 'Recruiting videos', desc: 'One shoot day, five backdrops, finished clips for careers page and social.' },
+  { tag: 'Live', title: 'Livestreams & keynotes', desc: 'Broadcast-grade virtual sets for town halls, launches and hybrid events.' },
+  { tag: 'Data', title: 'CAD becomes set', desc: 'Your product and plant data (CAD, BIM, 3D) become a walkable film set.' },
+];
+const faqs = [
+  { q: 'Can I rent the studio without virtual production experience?', a: 'Yes. In the “studio + operator” model our team runs the LED wall, tracking and Unreal Engine — your team focuses on camera and content.' },
+  { q: 'What does it cost?', a: 'Dry hire starts from €1,450 per half day; studio with operator from €2,500 per day. Full-service productions get a fixed quote within 24 hours. All prices plus VAT.' },
+  { q: "Can you tell it isn't real?", a: 'With correct tracking and lighting: no. The environment reacts in a perspective-correct way to every camera move — unlike greenscreen, you see the finished image on set.' },
+  { q: 'How soon can I book?', a: 'Depending on availability, bookings within five working days are possible. The fastest way to check is the enquiry form — reply within 24 hours.' },
+  { q: 'Can we use our own CAD / 3D data?', a: 'Yes. Product and plant data (CAD, BIM, 3D models) are prepared for Unreal Engine and turned into a walkable film set.' },
+];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Virtual production studio / LED volume rental',
+    name: 'Virtual production studio in Germany',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' }, telephone: '+49 174 8484842', email: 'info@creative-cinema.net' },
+    areaServed: ['Germany', 'Europe', 'Nuremberg', 'Erlangen'], availableLanguage: ['en', 'de'],
+    url: 'https://creative-studios.tv/en/virtual-production-studio/',
+    offers: [
+      { '@type': 'Offer', name: 'Dry hire', price: '1450', priceCurrency: 'EUR', description: 'Studio + LED tech, half day' },
+      { '@type': 'Offer', name: 'Studio + operator', price: '2500', priceCurrency: 'EUR', description: 'Studio with LED/tracking operator, per day' },
+    ],
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://creative-studios.tv/en/' },
+    { '@type': 'ListItem', position: 2, name: 'Virtual production studio', item: 'https://creative-studios.tv/en/virtual-production-studio/' },
+  ] },
+];
+---
+<Base lang="en" title={title} description={description} path={path} hasEN={false} noHreflang={true} jsonld={jsonld}>
+  <SiteNav active="vp" lang="en" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Breadcrumb"><a href="/en/">Home</a> <span>/</span> Virtual production studio</nav>
+      <span class="eyebrow">LED Volume · near Nuremberg, Germany</span>
+      <h1>Virtual production studio in Germany — 50 m² LED volume</h1>
+      <p class="lede">Rent Northern Bavaria's virtual production stage: a 50&nbsp;m² high-resolution LED wall with camera tracking, lighting and audio — bookable from half-day slots, with or without crew. Shoot in front of any backdrop in the world without leaving the studio, 20 minutes from Nuremberg.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="#kontakt">Check availability <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#prices">See pricing</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" style="margin:8px auto 0">
+    <div class="media reveal">
+      <span class="track tl" aria-hidden="true"></span><span class="track tr" aria-hidden="true"></span>
+      <div class="media-ph"><span class="mono">Studio / stage photo · 16:9</span><p class="ph-note">Add a real photo or walkthrough of the LED stage.</p></div>
+    </div>
+  </div>
+
+  <section id="why">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">The difference</span>
+      <h2>Why an LED wall instead of greenscreen or a location?</h2>
+      <p>On the LED wall your team and your talent see the finished environment in real time — no compositing surprises in post, real reflections and lighting straight in camera. Backdrop changes take minutes instead of travel days: <strong>five locations in one shoot day</strong> is the norm, not the exception. And the weather is guaranteed to be irrelevant.</p>
+    </div>
+  </section>
+
+  <section class="panel-bg" id="tech">
+    <div class="wrap">
+      <span class="eyebrow">Technology &amp; equipment</span>
+      <h2 class="section-h">Everything on board — just bring your project.</h2>
+      <div class="split reveal">
+        <table class="spec-table" aria-label="Studio specifications">
+          {specs.map(([k, v]) => (<tr><td>{k}</td><td>{v}</td></tr>))}
+        </table>
+        <div class="callout" style="margin:0">
+          <span class="mono accent">Real-time, not in post</span>
+          <h3>What you see is what you get.</h3>
+          <p>The environment reacts in a perspective-correct way to every camera move. Your client sees the finished image on set — sign-offs become a formality and nasty surprises in post are gone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="wrap">
+      <span class="eyebrow">Rental models &amp; pricing</span>
+      <h2 class="section-h">Bookable from half days — with or without crew.</h2>
+      <p class="lede">All prices plus VAT; agency rates for framework bookings on request.</p>
+      <div class="price-cards reveal" style="max-width:760px">
+        {prices.map((p) => (
+          <div class={`price${p.featured ? ' featured' : ''}`}><div><h4>{p.name}</h4><small>{p.desc}</small></div><span class="tag">{p.tag}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap">
+      <span class="eyebrow">Use cases</span>
+      <h2 class="section-h">One stage, every backdrop.</h2>
+      <div class="usecases">
+        {uses.map((u, i) => (
+          <div class={`uc reveal${i % 2 === 1 ? ' d1' : ''}`}><span class="mono">{u.tag}</span><h4>{u.title}</h4><p>{u.desc}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">FAQ</span>
+      <h2 class="section-h">Good to know.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt">
+    <div class="wrap contact-in">
+      <div>
+        <span class="eyebrow">Contact</span>
+        <h2>Lock in your studio date — reply within 24 hours.</h2>
+        <p class="lede">Tell us your date, project type and whether you need crew — we'll get back to you within 24 hours.</p>
+        <ContactForm lang="en" />
+      </div>
+      <div class="nap">
+        <strong>CREATIVECINEMA GMBH</strong><br />
+        Gundstraße 13a · 91056 Erlangen, Germany<br />
+        20 min from Nuremberg · parking on site<br />
+        Phone +49 174 8484842<br />
+        info@creative-cinema.net
+        <br /><br /><span class="accent">Direct. Innovative. Production-proof.</span>
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter lang="en" />
+</Base>

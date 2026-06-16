@@ -1,29 +1,48 @@
 ---
-// Selbst gehosteter Cookie-Consent (DSGVO/§25 TDDDG):
+// Selbst gehosteter Cookie-Consent (DSGVO/§25 TDDDG), zweisprachig (DE/EN):
 // - deny-by-default (optionale Kategorien standardmäßig AUS)
-// - granular, Einwilligung mit Zeitstempel in localStorage, jederzeit widerrufbar (window.openCookieSettings())
+// - granular, Einwilligung mit Zeitstempel in localStorage, widerrufbar via window.openCookieSettings()
 // - blockt optionale Skripte bis zur Einwilligung: <script type="text/plain" data-consent="statistics" ...>
+interface Props { lang?: 'de' | 'en' }
+const { lang = 'de' } = Astro.props;
+const T = {
+  de: {
+    title: 'Datenschutz-Einstellungen',
+    intro: 'Wir setzen nur technisch notwendige Cookies, die für den Betrieb der Seite erforderlich sind. Optionale Cookies (z. B. Statistik) verwenden wir ausschließlich mit Ihrer Einwilligung. Details in der',
+    policy: 'Datenschutzerklärung', policyHref: '/datenschutz/',
+    necName: 'Notwendig', necDesc: '– für den Betrieb erforderlich (immer aktiv).',
+    statName: 'Statistik', statDesc: '– anonyme Reichweitenmessung (derzeit nicht im Einsatz).',
+    mktName: 'Marketing / externe Medien', mktDesc: '– z. B. eingebettete Videos (derzeit nicht im Einsatz).',
+    only: 'Nur notwendige', settings: 'Einstellungen', acceptAll: 'Alle akzeptieren', save: 'Auswahl speichern',
+  },
+  en: {
+    title: 'Privacy settings',
+    intro: 'We only use technically necessary cookies required to operate the site. Optional cookies (e.g. statistics) are used solely with your consent. See our',
+    policy: 'privacy policy', policyHref: '/en/privacy/',
+    necName: 'Necessary', necDesc: '– required to operate the site (always on).',
+    statName: 'Statistics', statDesc: '– anonymous reach measurement (not currently used).',
+    mktName: 'Marketing / external media', mktDesc: '– e.g. embedded videos (not currently used).',
+    only: 'Necessary only', settings: 'Settings', acceptAll: 'Accept all', save: 'Save selection',
+  },
+};
+const t = T[lang] ?? T.de;
 ---
-<div id="cc-banner" class="cc-banner" role="dialog" aria-modal="false" aria-label="Datenschutz-Einstellungen" hidden>
+<div id="cc-banner" class="cc-banner" role="dialog" aria-modal="false" aria-label={t.title} hidden>
   <div class="cc-inner">
     <div class="cc-text">
-      <strong>Datenschutz-Einstellungen</strong>
-      <p>
-        Wir setzen nur <b>technisch notwendige</b> Cookies, die für den Betrieb der Seite erforderlich sind.
-        Optionale Cookies (z.&nbsp;B. Statistik) verwenden wir ausschließlich mit Ihrer Einwilligung.
-        Details in der <a href="/datenschutz/">Datenschutzerklärung</a>.
-      </p>
+      <strong>{t.title}</strong>
+      <p>{t.intro} <a href={t.policyHref}>{t.policy}</a>.</p>
       <div class="cc-cats" id="cc-cats" hidden>
-        <label class="cc-cat"><input type="checkbox" checked disabled /> <span><b>Notwendig</b> – für den Betrieb erforderlich (immer aktiv).</span></label>
-        <label class="cc-cat"><input type="checkbox" data-cat="statistics" /> <span><b>Statistik</b> – anonyme Reichweitenmessung (derzeit nicht im Einsatz).</span></label>
-        <label class="cc-cat"><input type="checkbox" data-cat="marketing" /> <span><b>Marketing / externe Medien</b> – z.&nbsp;B. eingebettete Videos (derzeit nicht im Einsatz).</span></label>
+        <label class="cc-cat"><input type="checkbox" checked disabled /> <span><b>{t.necName}</b> {t.necDesc}</span></label>
+        <label class="cc-cat"><input type="checkbox" data-cat="statistics" /> <span><b>{t.statName}</b> {t.statDesc}</span></label>
+        <label class="cc-cat"><input type="checkbox" data-cat="marketing" /> <span><b>{t.mktName}</b> {t.mktDesc}</span></label>
       </div>
     </div>
     <div class="cc-actions">
-      <button type="button" class="btn btn-ghost" id="cc-necessary">Nur notwendige</button>
-      <button type="button" class="btn btn-ghost" id="cc-settings-toggle">Einstellungen</button>
-      <button type="button" class="btn btn-primary" id="cc-accept">Alle akzeptieren</button>
-      <button type="button" class="btn btn-primary" id="cc-save" hidden>Auswahl speichern</button>
+      <button type="button" class="btn btn-ghost" id="cc-necessary">{t.only}</button>
+      <button type="button" class="btn btn-ghost" id="cc-settings-toggle">{t.settings}</button>
+      <button type="button" class="btn btn-primary" id="cc-accept">{t.acceptAll}</button>
+      <button type="button" class="btn btn-primary" id="cc-save" hidden>{t.save}</button>
     </div>
   </div>
 </div>
@@ -52,18 +71,13 @@
     document.dispatchEvent(new CustomEvent('cc:consent', { detail: c }));
   }
   function save(c) {
-    c.necessary = true;
-    c.ts = new Date().toISOString();
-    c.v = 1;
+    c.necessary = true; c.ts = new Date().toISOString(); c.v = 1;
     try { localStorage.setItem(KEY, JSON.stringify(c)); } catch (e) {}
-    banner.hidden = true;
-    activate(c);
+    banner.hidden = true; activate(c);
   }
   document.getElementById('cc-accept').addEventListener('click', function () { save({ statistics: true, marketing: true }); });
   document.getElementById('cc-necessary').addEventListener('click', function () { save({ statistics: false, marketing: false }); });
-  document.getElementById('cc-settings-toggle').addEventListener('click', function () {
-    cats.hidden = !cats.hidden; saveBtn.hidden = cats.hidden;
-  });
+  document.getElementById('cc-settings-toggle').addEventListener('click', function () { cats.hidden = !cats.hidden; saveBtn.hidden = cats.hidden; });
   saveBtn.addEventListener('click', function () {
     var c = {};
     document.querySelectorAll('#cc-cats input[data-cat]').forEach(function (i) { c[i.getAttribute('data-cat')] = i.checked; });

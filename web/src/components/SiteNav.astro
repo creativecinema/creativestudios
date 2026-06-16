@@ -1,26 +1,39 @@
 ---
-// Navigation für Unterseiten (Routen-basiert). Home ist content-getrieben (Home.astro).
-interface Props { active?: string }
-const { active = '' } = Astro.props;
+// Navigation für Unterseiten (Routen-basiert), zweisprachig (DE/EN).
+interface Props { active?: string; lang?: 'de' | 'en' }
+const { active = '', lang = 'de' } = Astro.props;
+const en = lang === 'en';
 const logo = '/assets/cc-logo-white.svg';
-const links = [
-  { key: 'studio', label: 'Studio mieten', href: '/studio/led-studio-mieten/' },
-  { key: 'vp', label: 'Virtual Production', href: '/xr-studio/virtual-production/' },
-  { key: 'calc', label: 'Drehtag-Rechner', href: '/wissen/kosten-drehtag/' },
-  { key: 'projects', label: 'Projekte', href: '/#projekte' },
-];
+const home = en ? '/en/' : '/';
+const links = en
+  ? [
+      { key: 'video', label: 'Video production', href: '/en/video-production-germany/' },
+      { key: 'vp', label: 'Virtual production studio', href: '/en/virtual-production-studio/' },
+      { key: 'projects', label: 'Work', href: '/en/#projekte' },
+    ]
+  : [
+      { key: 'studio', label: 'Studio mieten', href: '/studio/led-studio-mieten/' },
+      { key: 'vp', label: 'Virtual Production', href: '/xr-studio/virtual-production/' },
+      { key: 'calc', label: 'Drehtag-Rechner', href: '/wissen/kosten-drehtag/' },
+      { key: 'projects', label: 'Projekte', href: '/#projekte' },
+    ];
+const cta = en ? 'Check availability' : 'Verfügbarkeit anfragen';
+const ctaHref = en ? '/en/#kontakt' : '/#kontakt';
 ---
-<nav class="site" aria-label="Hauptnavigation">
+<nav class="site" aria-label={en ? 'Navigation' : 'Hauptnavigation'}>
   <div class="wrap nav-in">
-    <a class="brand" href="/" aria-label="CreativeCinema – Startseite">
+    <a class="brand" href={home} aria-label={en ? 'CreativeCinema – home' : 'CreativeCinema – Startseite'}>
       <img src={logo} alt="CreativeCinema" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'" />
       <span class="word" style="display:none">Creative<em>Cinema</em></span>
     </a>
-    <button class="nav-toggle" aria-label="Menü" aria-expanded="false" aria-controls="navlinks"><span></span></button>
+    <button class="nav-toggle" aria-label={en ? 'Menu' : 'Menü'} aria-expanded="false" aria-controls="navlinks"><span></span></button>
     <div class="nav-links" id="navlinks">
       {links.map((l) => <a href={l.href} aria-current={active === l.key ? 'page' : undefined}>{l.label}</a>)}
-      <a class="btn btn-primary magnetic" href="/#kontakt">Verfügbarkeit anfragen</a>
-      <span class="lang" aria-label="Sprache"><a href="/" aria-current="true">DE</a><a href="/en/">EN</a></span>
+      <a class="btn btn-primary magnetic" href={ctaHref}>{cta}</a>
+      <span class="lang" aria-label={en ? 'Language' : 'Sprache'}>
+        <a href="/" aria-current={!en ? 'true' : undefined}>DE</a>
+        <a href="/en/" aria-current={en ? 'true' : undefined}>EN</a>
+      </span>
     </div>
   </div>
 </nav>

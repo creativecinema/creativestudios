@@ -17,6 +17,7 @@ const logo = '/assets/cc-logo-white.svg';
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="navlinks"><span></span></button>
     <div class="nav-links" id="navlinks">
       {t.nav.links.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={lang === 'de' ? '/wissen/' : '/en/knowledge/'}>{lang === 'de' ? 'Wissen' : 'Knowledge'}</a>
       <a class="btn btn-primary magnetic" href="#kontakt">{t.nav.cta}</a>
       <span class="lang" aria-label="Language">
         <a href="/" aria-current={lang === 'de' ? 'true' : undefined}>DE</a>

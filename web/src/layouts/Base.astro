@@ -12,16 +12,18 @@ export interface Props {
   ogImage?: string;       // absolute URL; Default unten
   robots?: string;        // z. B. 'noindex, follow' für Rechtstexte/404
   noHreflang?: boolean;   // EN-only-Seiten ohne DE-Pendant (kein hreflang-Alternate)
+  altDePath?: string;     // expliziter DE-Pfad der Übersetzung (falls ≠ path) – für hreflang
+  altEnPath?: string;     // expliziter EN-Pfad der Übersetzung (falls ≠ "en/"+path) – für hreflang
 }
 const {
   lang, title, description, path = '', hasEN = true, jsonld = [],
-  ogImage, robots = 'index, follow', noHreflang = false,
+  ogImage, robots = 'index, follow', noHreflang = false, altDePath, altEnPath,
 } = Astro.props;
 
 const base = 'https://creative-studios.tv/';
 const canonical = lang === 'de' ? base + path : base + 'en/' + path;
-const altDe = base + path;
-const altEn = base + 'en/' + path;
+const altDe = base + (altDePath ?? path);
+const altEn = base + (altEnPath ?? ('en/' + path));
 const og = ogImage || base + 'og-cover.jpg';
 const ogAlt = lang === 'de'
   ? 'CreativeCinema – Filmproduktion & Virtual-Production-Studio in Erlangen/Nürnberg'

@@ -2,6 +2,7 @@
 layout: ../../layouts/BlogPost.astro
 lang: de
 path: wissen/was-ist-virtual-production/
+altPath: en/knowledge/what-is-virtual-production/
 title: "Was ist Virtual Production? Der Praxis-Leitfaden für Unternehmen"
 description: "Virtual Production einfach erklärt: Wie LED-Wand, Kameratracking und Echtzeit-Engine den Dreh verändern – mit Praxisbeispielen für Unternehmen aus Erlangen/Nürnberg."
 pubDate: 2026-06-16

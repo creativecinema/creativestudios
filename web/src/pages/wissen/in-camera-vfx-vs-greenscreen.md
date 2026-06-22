@@ -2,6 +2,7 @@
 layout: ../../layouts/BlogPost.astro
 lang: de
 path: wissen/in-camera-vfx-vs-greenscreen/
+altPath: en/knowledge/in-camera-vfx-vs-green-screen/
 title: "In-Camera VFX vs. Greenscreen: Was lohnt sich für Ihren Dreh?"
 description: "Greenscreen oder LED-Wand? Vor- und Nachteile von In-Camera VFX gegenüber Greenscreen – und wann sich welche Methode für Ihren Dreh wirklich lohnt."
 pubDate: 2026-06-16

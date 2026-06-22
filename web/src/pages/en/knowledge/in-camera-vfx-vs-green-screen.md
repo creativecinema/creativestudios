@@ -2,6 +2,7 @@
 layout: ../../../layouts/BlogPost.astro
 lang: en
 path: knowledge/in-camera-vfx-vs-green-screen/
+altPath: wissen/in-camera-vfx-vs-greenscreen/
 title: "In-Camera VFX vs. Green Screen: Which Is Right for Your Shoot?"
 description: "Green screen or LED wall? The pros and cons of in-camera VFX compared with green screen — and when each method really pays off for your shoot."
 pubDate: 2026-06-16

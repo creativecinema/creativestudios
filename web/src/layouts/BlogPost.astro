@@ -13,6 +13,10 @@ const hubHref = en ? '/en/knowledge/' : '/wissen/';
 const hubLabel = en ? 'Knowledge' : 'Wissen';
 const ctaHref = en ? '/en/#kontakt' : '/#kontakt';
 const ctaLabel = en ? 'Check availability' : 'Verfügbarkeit anfragen';
+// hreflang: DE-/EN-Artikel sind Übersetzungen mit unterschiedlichen Pfaden → altPath (Pfad der anderen Sprache) im Frontmatter
+const hasAlt = !!frontmatter.altPath;
+const altDePath = en ? frontmatter.altPath : path;
+const altEnPath = en ? ('en/' + path) : frontmatter.altPath;
 const dateFmt = frontmatter.pubDate
   ? new Date(frontmatter.pubDate).toLocaleDateString(en ? 'en-GB' : 'de-DE', { year: 'numeric', month: 'long', day: 'numeric' })
   : '';
@@ -34,7 +38,7 @@ const jsonld = [
   },
 ];
 ---
-<Base lang={lang} title={`${frontmatter.title} | CreativeCinema`} description={frontmatter.description} path={path} hasEN={false} noHreflang={true} jsonld={jsonld}>
+<Base lang={lang} title={`${frontmatter.title} | CreativeCinema`} description={frontmatter.description} path={path} hasEN={hasAlt} noHreflang={!hasAlt} altDePath={altDePath} altEnPath={altEnPath} jsonld={jsonld}>
   <SiteNav lang={lang} active="wissen" />
 
   <main class="legal">

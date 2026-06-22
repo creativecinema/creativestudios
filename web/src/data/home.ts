@@ -160,7 +160,7 @@ export const home: Record<'de' | 'en', HomeContent> = {
   en: {
     meta: {
       title: 'Video & Virtual Production Studio in Germany | CreativeCinema',
-      description: 'English-speaking video production company with its own 50 m² LED volume near Nuremberg, Germany. Virtual production, studio rental & content retainers — five locations in a single shoot day.',
+      description: 'English-speaking video production company near Nuremberg, Germany, with its own 50 m² LED volume. Virtual production, studio rental & content retainers.',
     },
     nav: {
       links: [

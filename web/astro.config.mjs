@@ -15,7 +15,7 @@ export default defineConfig({
     storyblok({
       accessToken: env.STORYBLOK_TOKEN,
       apiOptions: { region: 'eu' },
-      bridge: true,        // Live-Vorschau im Storyblok Visual Editor
+      bridge: false,       // NICHT global ausliefern (spart ~820 KB/Seite für Besucher); Bridge wird im Editor lazy geladen (siehe Base.astro)
       components: {},      // wir mappen Felder manuell auf Home.astro (kein Blok-Zwang)
     }),
     sitemap({

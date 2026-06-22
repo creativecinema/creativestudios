@@ -29,11 +29,13 @@ if (!t.contact.nap.some((l) => /174/.test(l))) {
   if (i >= 0) t.contact.nap.splice(i, 0, 'Phone +49 174 8484842'); else t.contact.nap.push('Phone +49 174 8484842');
 }
 
+// Entity link: creative-studios.tv is a brand of CreativeCinema GmbH (main domain + Google Business Profile)
+const sameAs = ['https://www.creative-cinema.de/'];
 const jsonld = [
   {
     '@context': 'https://schema.org', '@type': 'Organization', '@id': 'https://creative-studios.tv/#org',
     name: 'CreativeCinema GmbH', url: 'https://creative-studios.tv/',
-    logo: 'https://creative-studios.tv/assets/cc-logo-white.svg',
+    logo: 'https://creative-studios.tv/assets/cc-logo-white.svg', sameAs,
     image: 'https://creative-studios.tv/og-cover.jpg', email: 'info@creative-cinema.net', telephone: '+49 174 8484842',
     description: t.meta.description,
     address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' },
@@ -47,7 +49,7 @@ const jsonld = [
     '@context': 'https://schema.org', '@type': ['LocalBusiness', 'ProfessionalService'], '@id': 'https://creative-studios.tv/#business',
     name: 'CreativeCinema GmbH', description: t.meta.description, slogan: 'Direct. Innovative. Production-proof.',
     image: 'https://creative-studios.tv/og-cover.jpg', url: 'https://creative-studios.tv/', email: 'info@creative-cinema.net', telephone: '+49 174 8484842',
-    priceRange: '€€', knowsLanguage: ['de', 'en'],
+    priceRange: '€€', knowsLanguage: ['de', 'en'], sameAs,
     address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bavaria', addressCountry: 'DE' },
     areaServed: ['Germany', 'Europe', 'Erlangen', 'Nuremberg', 'Bavaria'],
     makesOffer: [

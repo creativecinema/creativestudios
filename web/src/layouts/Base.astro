@@ -75,5 +75,18 @@ const ogAlt = lang === 'de'
   <slot />
   <CookieConsent lang={lang} />
   <script is:inline src="/scripts/cc.js"></script>
+  <!-- Storyblok-Bridge nur im Visual Editor laden (Query ?_storyblok…), nicht für normale Besucher -->
+  <script is:inline>
+    if (location.search.includes('_storyblok')) {
+      var sb = document.createElement('script');
+      sb.src = 'https://app.storyblok.com/f/storyblok-v2-latest.js';
+      sb.onload = function () {
+        if (window.StoryblokBridge) {
+          new window.StoryblokBridge().on(['published', 'change'], function () { location.reload(); });
+        }
+      };
+      document.head.appendChild(sb);
+    }
+  </script>
 </body>
 </html>

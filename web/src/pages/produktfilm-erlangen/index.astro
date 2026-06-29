@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const title = 'Produktfilm produzieren lassen – Erlangen / Nürnberg | CreativeCinema';
+const description = 'Produktfilm & Technikfilm produzieren lassen: Produkte und Maschinen im Studio mit LED-Wand & Virtual Production hochwertig in Szene gesetzt. Region Erlangen/Nürnberg.';
+const path = 'produktfilm-erlangen/';
+
+const faqs = [
+  { q: 'Was kostet ein Produktfilm?', a: 'Je nach Produkt, Anzahl der Szenen und Animationsgrad. Weil wir mehrere Looks an einem Studiotag drehen und vorhandene CAD-/3D-Daten nutzen können, bleibt das Budget planbar – Angebot innerhalb von 24 Stunden.' },
+  { q: 'Können Sie unsere CAD-/3D-Daten verwenden?', a: 'Ja. Produkt- und Anlagendaten (CAD, BIM, 3D-Modelle) bereiten wir für die Unreal Engine auf und machen sie zur begehbaren Kulisse oder zur animierten Produktdarstellung.' },
+  { q: 'Eignet sich das auch für erklärungsbedürftige Technik?', a: 'Gerade dafür. Mit Virtual Production zeigen wir Funktionsweisen, Schnittansichten und Einsatzumgebungen, die real schwer oder teuer zu filmen wären.' },
+  { q: 'Drehen Sie das Produkt bei uns oder im Studio?', a: 'Meist im LED-Studio in Erlangen – dort haben wir Licht, Hintergründe und Technik unter Kontrolle. Großgeräte oder Linien filmen wir auf Wunsch vor Ort in der Region.' },
+];
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Produktfilm- und Technikfilm-Produktion',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', telephone: '+49 174 8484842', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bayern', addressCountry: 'DE' } },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Metropolregion Nürnberg', 'Bayern'], url: 'https://creative-studios.tv/' + path },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://creative-studios.tv/' },
+    { '@type': 'ListItem', position: 2, name: 'Produktfilm Erlangen', item: 'https://creative-studios.tv/' + path },
+  ] },
+];
+---
+<Base lang="de" title={title} description={description} path={path} hasEN={false} jsonld={jsonld}>
+  <SiteNav active="studio" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a> <span>/</span> <a href="/videoproduktion-erlangen/">Videoproduktion</a> <span>/</span> Produktfilm</nav>
+      <span class="eyebrow">Produkt- &amp; Technikfilm · Erlangen / Nürnberg</span>
+      <h1>Produktfilm &amp; Technikfilm produzieren lassen</h1>
+      <p class="lede">Ihr Produkt verdient mehr als ein Foto vor weißer Wand. Im <a href="/studio/led-studio-mieten/">Studio mit LED-Wand</a> setzen wir Produkte, Maschinen und Medizintechnik vor passenden Umgebungen in Szene – mit echtem Licht, Reflexionen und, auf Wunsch, Ihren eigenen CAD-Daten als Kulisse. Aus der Metropolregion Nürnberg.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="/#kontakt">Produktfilm anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Drehkosten rechnen</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="leistung">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Der Unterschied</span>
+      <h2>Aus CAD-Daten wird Kulisse.</h2>
+      <p>Der Vorteil von Virtual Production beim Produktfilm: Wir verwandeln Ihre vorhandenen Produkt- und Anlagendaten (CAD, BIM, 3D) in fotorealistische Umgebungen und Animationen. So zeigen wir Funktionsweisen, Einsatzorte und Varianten, die real schwer, teuer oder gar nicht zu filmen wären – und das alles an einem Drehtag, ohne Reise zum Einsatzort.</p>
+      <p>Verwandte Leistungen: <a href="/imagefilm-erlangen/">Imagefilm</a>, <a href="/videoproduktion-erlangen/">Videoproduktion Erlangen</a> und das <a href="/xr-studio/virtual-production/">XR-Studio</a>.</p>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap">
+      <span class="eyebrow">So läuft Ihr Produktfilm</span>
+      <h2 class="section-h">In drei Schritten zum fertigen Film.</h2>
+      <div class="steps reveal">
+        <div class="step"><div class="n">1</div><h4>Briefing &amp; Daten</h4><p>Wir klären Botschaft, Szenen und prüfen vorhandene CAD-/3D-Daten – Angebot in 24 Stunden.</p></div>
+        <div class="step"><div class="n">2</div><h4>Dreh im Studio</h4><p>Produkt vor wechselnden Umgebungen, mehrere Looks an einem Tag.</p></div>
+        <div class="step"><div class="n">3</div><h4>Schnitt &amp; Animation</h4><p>Postproduktion, 3D-Animation, Grading und finale Formate für Web, Messe und Vertrieb.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage" class="tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Produktfilm in Erlangen anfragen</h2>
+        <p>Beschreiben Sie kurz Ihr Produkt und das Ziel – wir melden uns innerhalb von 24 Stunden mit Vorschlägen und Angebot.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href="/#kontakt">Anfrage senden <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/imagefilm-erlangen/">Imagefilm ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="section-h">Gut zu wissen.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Base>

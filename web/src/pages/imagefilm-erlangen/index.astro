@@ -1,0 +1,88 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const title = 'Imagefilm Erlangen & Nürnberg produzieren lassen | CreativeCinema';
+const description = 'Imagefilm in Erlangen & Nürnberg produzieren lassen: Unternehmens- & Markenfilm mit eigenem Studio (Virtual Production). Konzept, Dreh & Schnitt aus einer Hand.';
+const path = 'imagefilm-erlangen/';
+
+const faqs = [
+  { q: 'Was kostet ein Imagefilm?', a: 'Das hängt von Länge, Drehtagen und Aufwand ab. Durch unser eigenes Studio und Virtual Production lassen sich mehrere Szenen an einem Tag drehen – das hält das Budget planbar. Ein konkretes Angebot erhalten Sie innerhalb von 24 Stunden.' },
+  { q: 'Wie lange dauert die Produktion eines Imagefilms?', a: 'Von Briefing bis Auslieferung meist 3–6 Wochen, je nach Umfang und Korrekturschleifen. Ein einzelner Drehtag im Studio reicht für viele Imagefilme bereits aus.' },
+  { q: 'Dreht ihr im Studio oder bei uns vor Ort?', a: 'Beides – oft kombiniert: Außen- und Realaufnahmen vor Ort in der Region Nürnberg, aufwändige oder markengeprägte Kulissen im LED-Studio in Erlangen.' },
+  { q: 'Was unterscheidet einen Imagefilm vom Produktfilm?', a: 'Der Imagefilm transportiert Haltung, Kultur und Kompetenz des Unternehmens als Ganzes; der Produktfilm stellt ein konkretes Produkt in den Mittelpunkt. Beides bekommen Sie bei uns aus einer Hand.' },
+];
+const jsonld = [
+  { '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Imagefilm-Produktion',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', telephone: '+49 174 8484842', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bayern', addressCountry: 'DE' } },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Metropolregion Nürnberg', 'Bayern'], url: 'https://creative-studios.tv/' + path },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://creative-studios.tv/' },
+    { '@type': 'ListItem', position: 2, name: 'Imagefilm Erlangen', item: 'https://creative-studios.tv/' + path },
+  ] },
+];
+---
+<Base lang="de" title={title} description={description} path={path} hasEN={false} jsonld={jsonld}>
+  <SiteNav active="studio" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a> <span>/</span> <a href="/videoproduktion-erlangen/">Videoproduktion</a> <span>/</span> Imagefilm</nav>
+      <span class="eyebrow">Imagefilm · Erlangen / Nürnberg</span>
+      <h1>Imagefilm produzieren lassen – in Erlangen &amp; Nürnberg</h1>
+      <p class="lede">Ein Imagefilm zeigt, wofür Ihr Unternehmen steht – in Bildern, die hängen bleiben. Wir entwickeln Konzept, drehen in unserem <a href="/studio/led-studio-mieten/">Studio mit LED-Wand</a> oder bei Ihnen vor Ort und liefern den fertigen Film. Aus der Metropolregion Nürnberg, ohne Reisen in große Studiostädte.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="/#kontakt">Imagefilm anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Drehkosten rechnen</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="leistung">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Was ein guter Imagefilm leistet</span>
+      <h2>Haltung sichtbar machen – nicht nur Fakten aufzählen.</h2>
+      <p>Ein starker Imagefilm verbindet Emotion und Substanz: Er macht Kultur, Anspruch und Menschen Ihres Unternehmens erlebbar und wirkt auf Website, Messe, im Vertrieb und im Recruiting. Mit Virtual Production gestalten wir dafür Kulissen, die zur Marke passen – vom reduzierten Studio-Look bis zur fotorealistischen Markenwelt, die es real gar nicht gibt.</p>
+      <p>Verwandte Leistungen: <a href="/produktfilm-erlangen/">Produktfilm</a>, <a href="/videoproduktion-erlangen/">Videoproduktion Erlangen</a> und das <a href="/xr-studio/virtual-production/">XR-Studio</a>.</p>
+    </div>
+  </section>
+
+  <section class="panel-bg">
+    <div class="wrap">
+      <span class="eyebrow">So läuft Ihr Imagefilm</span>
+      <h2 class="section-h">In drei Schritten zum fertigen Film.</h2>
+      <div class="steps reveal">
+        <div class="step"><div class="n">1</div><h4>Konzept &amp; Angebot</h4><p>Wir klären Ziel, Zielgruppe und Kernbotschaft – Angebot innerhalb von 24 Stunden.</p></div>
+        <div class="step"><div class="n">2</div><h4>Dreh</h4><p>Im Studio in Erlangen und/oder vor Ort – mehrere Szenen an einem Tag dank LED-Wand.</p></div>
+        <div class="step"><div class="n">3</div><h4>Schnitt &amp; Feinschliff</h4><p>Postproduktion, Musik, Grading, Korrekturschleifen und finale Formate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage" class="tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Imagefilm in Erlangen anfragen</h2>
+        <p>Erzählen Sie uns kurz von Ihrem Unternehmen und dem Anlass – wir melden uns innerhalb von 24 Stunden mit Konzeptideen und Angebot.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href="/#kontakt">Anfrage senden <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/produktfilm-erlangen/">Produktfilm ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="section-h">Gut zu wissen.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Base>

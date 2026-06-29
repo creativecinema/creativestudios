@@ -1,0 +1,116 @@
+---
+import Base from '../../layouts/Base.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+
+const title = 'Videoproduktion Erlangen & Filmproduktion Nürnberg | CreativeCinema';
+const description = 'Video- & Filmproduktion in Erlangen für die Region Nürnberg: Imagefilm, Produktfilm, Recruiting- & Messefilm – mit eigenem Filmstudio (LED/Virtual Production).';
+const path = 'videoproduktion-erlangen/';
+
+const leistungen = [
+  ['Imagefilm', 'Unternehmens- und Markenfilme, die Haltung und Qualität transportieren.'],
+  ['Produkt- & Technikfilm', 'Maschinen, Geräte und Medizintechnik klar und hochwertig in Szene gesetzt.'],
+  ['Recruitingfilm', 'Arbeitgebermarke sichtbar machen – authentisch und im Look der Region.'],
+  ['Messe- & Eventfilm', 'Loops, Aftermovies und Live-Content für Messeauftritte.'],
+  ['Social-Media-Content', 'Vertikale Clips und Kampagnen-Schnitte aus einem Dreh.'],
+  ['Livestream & Townhall', 'Professionelle Übertragungen aus dem Studio oder vor Ort.'],
+];
+const faqs = [
+  { q: 'Was kostet eine Videoproduktion in Erlangen?', a: 'Das hängt von Umfang, Drehtagen und Postproduktion ab. Dank eigenem Studio und Virtual Production lassen sich mehrere Motive an einem Tag drehen – das macht Kosten planbar. Den Vergleich Location- vs. Studiodreh rechnen Sie im Drehtag-Rechner durch; ein konkretes Angebot erhalten Sie innerhalb von 24 Stunden.' },
+  { q: 'Dreht ihr auch beim Kunden vor Ort?', a: 'Ja. Wir produzieren in unserem Filmstudio in Erlangen und genauso on location in der Metropolregion Nürnberg – oft kombiniert: Außenaufnahmen vor Ort, aufwändige Kulissen im Studio.' },
+  { q: 'Habt ihr ein eigenes Filmstudio in der Region?', a: 'Ja – ein Virtual-Production-/LED-Studio in Erlangen, 20 Minuten von Nürnberg. Dort entstehen fotorealistische Drehumgebungen in Echtzeit, ohne Reisen und ohne Greenscreen-Nachbearbeitung.' },
+  { q: 'Für welche Branchen produziert ihr?', a: 'Schwerpunkt sind Industrie, Maschinenbau, Medizin- und Messtechnik, IT/Software sowie Agenturen der Metropolregion Nürnberg – überall dort, wo regelmäßig hochwertiges Bewegtbild gebraucht wird.' },
+  { q: 'Wie schnell kann ein Dreh stattfinden?', a: 'Je nach Auslastung sind Termine innerhalb weniger Werktage möglich. Verfügbarkeit erfragen Sie am schnellsten über das Formular.' },
+];
+const jsonld = [
+  {
+    '@context': 'https://schema.org', '@type': 'Service', serviceType: 'Video- und Filmproduktion',
+    provider: { '@type': 'LocalBusiness', name: 'CreativeCinema GmbH', telephone: '+49 174 8484842', address: { '@type': 'PostalAddress', streetAddress: 'Gundstraße 13a', postalCode: '91056', addressLocality: 'Erlangen', addressRegion: 'Bayern', addressCountry: 'DE' } },
+    areaServed: ['Erlangen', 'Nürnberg', 'Fürth', 'Metropolregion Nürnberg', 'Bayern'], url: 'https://creative-studios.tv/' + path,
+  },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Start', item: 'https://creative-studios.tv/' },
+    { '@type': 'ListItem', position: 2, name: 'Videoproduktion Erlangen', item: 'https://creative-studios.tv/' + path },
+  ] },
+];
+---
+<Base lang="de" title={title} description={description} path={path} hasEN={false} jsonld={jsonld}>
+  <SiteNav active="studio" />
+
+  <header class="subhero">
+    <div class="wrap">
+      <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a> <span>/</span> Videoproduktion Erlangen</nav>
+      <span class="eyebrow">Film- &amp; Videoproduktion · Erlangen / Nürnberg</span>
+      <h1>Videoproduktion in Erlangen &amp; Filmproduktion für die Metropolregion Nürnberg</h1>
+      <p class="lede">Wir produzieren Film und Video für Unternehmen aus Erlangen, Nürnberg und Fürth – von Imagefilm bis Produktfilm. Der Unterschied: ein eigenes <a href="/studio/led-studio-mieten/">Filmstudio mit LED-Wand</a> in der Region. So entstehen mehrere Drehkulissen an einem Tag, ohne Reisen nach München oder Berlin.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary magnetic" href="/#kontakt">Projekt anfragen <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="/wissen/kosten-drehtag/">Drehkosten rechnen</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="leistungen">
+    <div class="wrap">
+      <span class="eyebrow">Leistungen</span>
+      <h2 class="section-h">Film- &amp; Videoproduktion aus einer Hand.</h2>
+      <div class="split reveal">
+        <table class="spec-table" aria-label="Leistungen der Videoproduktion">
+          {leistungen.map(([k, v]) => (<tr><td>{k}</td><td>{v}</td></tr>))}
+        </table>
+        <div class="callout" style="margin:0">
+          <span class="mono accent">Region Nürnberg</span>
+          <h3>Vor der Haustür statt auf Reisen.</h3>
+          <p>Kurze Wege, persönliche Abnahme am Set, planbare Kosten. Für Industrie und Mittelstand der Metropolregion bedeutet das: hochwertiges Bewegtbild ohne Logistik-Aufwand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-bg" id="filmstudio">
+    <div class="wrap-narrow prose">
+      <span class="eyebrow">Eigenes Filmstudio</span>
+      <h2>Filmstudio in Erlangen – nahe Nürnberg</h2>
+      <p>Als Filmproduktion mit eigenem <a href="/xr-studio/virtual-production/">Virtual-Production-Studio</a> drehen wir vor einer 50&nbsp;m² großen LED-Wand: Die Kulisse läuft in Echtzeit, sichtbar für Team und Kunde, mit realistischem Licht und Reflexionen. Statt aufwändiger Greenscreen-Nachbearbeitung entsteht der finale Look direkt in der Kamera. Wer ein <strong>Filmstudio in der Region Nürnberg</strong> sucht, kann es bei uns als <a href="/studio/led-studio-mieten/">Stage mieten</a> oder die komplette Produktion bei uns beauftragen.</p>
+      <p>Mehr zur Technik: <a href="/wissen/was-ist-virtual-production/">Was ist Virtual Production?</a> · <a href="/wissen/virtual-production-erlangen-nuernberg/">Der Standortvorteil für den Mittelstand</a></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <span class="eyebrow">So läuft Ihr Projekt</span>
+      <h2 class="section-h">In drei Schritten zum fertigen Film.</h2>
+      <div class="steps reveal">
+        <div class="step"><div class="n">1</div><h4>Briefing &amp; Angebot</h4><p>Sie schildern Ziel und Rahmen – Angebot innerhalb von 24 Stunden.</p></div>
+        <div class="step"><div class="n">2</div><h4>Dreh</h4><p>Im Studio in Erlangen und/oder vor Ort in der Region – mehrere Motive an einem Tag.</p></div>
+        <div class="step"><div class="n">3</div><h4>Schnitt &amp; Lieferung</h4><p>Postproduktion, Korrekturschleifen und finale Dateien in allen benötigten Formaten.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="anfrage" class="tight">
+    <div class="wrap">
+      <div class="cta-band reveal">
+        <h2>Videoproduktion in Erlangen anfragen</h2>
+        <p>Sagen Sie uns Ihr Vorhaben – Imagefilm, Produktfilm, Recruiting oder Messe. Wir melden uns innerhalb von 24 Stunden.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary magnetic" href="/#kontakt">Projekt anfragen <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="/studio/led-studio-mieten/">Studio mieten</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq tight">
+    <div class="wrap-narrow">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="section-h">Gut zu wissen.</h2>
+      <div class="reveal">
+        {faqs.map((f) => (<details><summary>{f.q}</summary><p>{f.a}</p></details>))}
+      </div>
+    </div>
+  </section>
+
+  <SiteFooter />
+</Base>
